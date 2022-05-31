@@ -78,7 +78,6 @@ $(document).ready(function () {
     });
 
     $('#tasks_success').click(function () {
-        $('.test-form-container').css('margin-top', '100px');
         count = $('#subject-count_task').val();
         console.log(count);
         $('#tasks_container').html('');

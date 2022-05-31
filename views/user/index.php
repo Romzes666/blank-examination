@@ -11,6 +11,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Пользователи';
+$this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs']['admin'] = $this->title;
 ?>
 <div class="user-index">

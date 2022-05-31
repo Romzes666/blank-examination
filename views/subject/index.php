@@ -11,6 +11,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Предметы';
+$this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subject-index">
@@ -37,6 +38,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'count_task',
             [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => 'Бланки',
+                'template' => '{view}',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('<button class="btn-primary">Посмотреть</button>', $url, [
+                            'title' => Yii::t('app', 'lead-view'),
+                        ]);
+                    },
+                ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                        return 'index.php?r=subject-blank/index&id='.$model->id . '&type_test=' . $model->type;
+                }
+            ],
+            [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Subject $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
@@ -44,6 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
+
 
 
 </div>

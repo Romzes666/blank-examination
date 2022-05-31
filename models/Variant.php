@@ -49,9 +49,9 @@ class Variant extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_subject' => 'Id Subject',
-            'number' => 'Number',
-            'kim' => 'Kim',
-            'count_list' => 'Count List',
+            'number' => 'Вариант',
+            'kim' => 'КИМ',
+            'count_list' => 'Кол-во страниц',
         ];
     }
 

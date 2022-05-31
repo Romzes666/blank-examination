@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Subject */
 
 $this->title = 'Обновление предмета: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Предметы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Обновление';

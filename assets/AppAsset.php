@@ -25,7 +25,8 @@ class AppAsset extends AssetBundle
         'https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
         'https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap',
         'https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,700&amp;subset=cyrillic-ext',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+        'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css',
 
     ];
     public $js = [

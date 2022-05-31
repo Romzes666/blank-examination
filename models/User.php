@@ -31,7 +31,7 @@ class User extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName() : string
     {
         return 'user_table';
     }
@@ -97,23 +97,23 @@ class User extends \yii\db\ActiveRecord
      * @param int $id
      * @return mixed|null
      */
-    public function getRoleName(int $id)
+    public function getRoleName(int $id): mixed
     {
         $list = self::roles();
         return $list[$id] ?? null;
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return ($this->role == self::ROLE_ADMIN);
     }
 
-    public function isExpert()
+    public function isExpert(): bool
     {
         return ($this->role == self::ROLE_EXPERT);
     }
 
-    public function isUser()
+    public function isUser(): bool
     {
         return ($this->role == self::ROLE_USER);
     }

@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\User */
 
 $this->title = 'Обновление Эксперта: ' . $model->user_name . ' ' . $model->last_name;
+$this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Эксперты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->user_name. ' ' .$model->last_name, 'url' => ['view', 'user_id' => $model->user_id]];
 $this->params['breadcrumbs'][] = 'Обновление';

@@ -9,7 +9,9 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TemplateBlankSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
 $this->title = 'Шаблоны бланков';
+$this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="template-blank-index">
@@ -17,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать шаблон', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать шаблон бланка', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,14 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name:text:Предмет',
-            'subject.type:text:Тип тестирования',
-            'type:text:Тип бланка',
-            'image_name',
+
+            'id_tb',
+            'type_blank',
+            'input_count',
+            'class_templ',
+            'type_test',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, TemplateBlank $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
+                    return Url::toRoute([$action, 'id_tb' => $model->id_tb]);
                  }
             ],
         ],

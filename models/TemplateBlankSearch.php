@@ -14,13 +14,11 @@ class TemplateBlankSearch extends TemplateBlank
     /**
      * {@inheritdoc}
      */
-    public $name;
-    public $st;
     public function rules()
     {
         return [
-            [['id', 'id_subject', 'input_count'], 'integer'],
-            [['name','type', 'image_name'], 'safe'],
+            [['id_tb', 'input_count', 'class_templ'], 'integer'],
+            [['type_blank', 'image_name', 'type_test'], 'safe'],
         ];
     }
 
@@ -44,37 +42,31 @@ class TemplateBlankSearch extends TemplateBlank
     {
         $query = TemplateBlank::find();
 
-        $query->joinWith(['subject']);
+        // add conditions that should always apply here
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $dataProvider->sort->attributes['name'] = [
-            'asc' => ['name' => SORT_ASC],
-            'desc' => ['name' => SORT_DESC],
-        ];
-
-        $dataProvider->sort->attributes['subject.type'] = [
-            'asc' => ['subject.type' => SORT_ASC],
-            'desc' => ['subject.type' => SORT_DESC],
-        ];
-
         $this->load($params);
 
         if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
             return $dataProvider;
         }
+
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'id_subject' => $this->id_subject,
+            'id_tb' => $this->id_tb,
             'input_count' => $this->input_count,
+            'class_templ' => $this->class_templ,
         ]);
 
-        $query->andFilterWhere(['like', 'template_blank.type', $this->type])
+        $query->andFilterWhere(['like', 'type_blank', $this->type_blank])
             ->andFilterWhere(['like', 'image_name', $this->image_name])
-        ->andFilterWhere(['like', 'name', $this->name])
-        ->andFilterWhere(['like', 'subject.type', $this->st]);
+            ->andFilterWhere(['like', 'type_test', $this->type_test]);
+
         return $dataProvider;
     }
 }

@@ -36,7 +36,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function getId(): int|string
+    public function getId(): int
     {
         return $this->user_id;
     }

@@ -999,7 +999,7 @@ Constructor
 .blank-area {
     border: 3px solid rgba(150, 150, 150, 0.4);
     border-radius: 5px;
-    width: 60%;
+    width: 100%;
     min-height: 100px;
     margin: auto 0;
 }
@@ -1048,6 +1048,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 .frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
     position: absolute;
     z-index: 999;
     width: 300px;

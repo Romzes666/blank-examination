@@ -4,8 +4,10 @@ namespace app\controllers;
 
 use app\models\Errors;
 use app\models\Subject;
+use app\models\SubjectBlanks;
 use app\models\SubjectSearch;
 use app\models\Task;
+use app\models\TemplateBlank;
 use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -20,7 +22,7 @@ class SubjectController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -40,7 +42,7 @@ class SubjectController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new SubjectSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -57,7 +59,7 @@ class SubjectController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -65,12 +67,29 @@ class SubjectController extends Controller
     }
 
     /**
+     * Displays a single Subject model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionBlank(int $id): string
+    {
+        return $this->render('blank',[
+            'model' => $this->findModel($id),
+            'blanks' => (new \yii\db\Query())->from('template_blank')->select(['template_blank.*'])
+                ->innerJoin('subject_blanks','`template_blank`.`id_tb` = `subject_blanks`.`id_templateblank`')
+                ->innerJoin('subject', '`subject`.`id` = `subject_blanks`.`id_subject`')
+                ->where(['subject_blanks.id_subject' => $id])
+                ->all(),
+        ]);
+    }
+    /**
      * Creates a new Subject model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|Response
      * @throws Exception
      */
-    public function actionCreate()
+    public function actionCreate(): Response|string
     {
         $model = new Subject();
         if ($this->request->isPost) {
@@ -102,7 +121,7 @@ class SubjectController extends Controller
      * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id): Response|string
     {
         $model = $this->findModel($id);
 
@@ -122,7 +141,7 @@ class SubjectController extends Controller
      * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
         $this->findModel($id)->delete();
 
@@ -136,7 +155,7 @@ class SubjectController extends Controller
      * @return Subject the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Subject
     {
         if (($model = Subject::findOne(['id' => $id])) !== null) {
             return $model;

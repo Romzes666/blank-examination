@@ -5,9 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\TemplateBlank */
 
-$this->title = 'Обновление Шаблона: ' . $model->id;
+$this->title = 'Обновление шаблона: ' . $model->type_blank;
+$this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Шаблоны бланков', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->type_blank, 'url' => ['view', 'id_tb' => $model->id_tb]];
 $this->params['breadcrumbs'][] = 'Обновление';
 ?>
 <div class="template-blank-update">

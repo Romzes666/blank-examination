@@ -57,6 +57,10 @@ AppAsset::register($this);
 <main style="color: white;">
         <div style="padding: 100px 15px 20px;" class="container">
             <?= Breadcrumbs::widget([
+                'homeLink' => [
+                    'label' => 'Главная',
+                    'url' => 'index.php?r=main/index',
+                ],
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
             <?= Alert::widget() ?>

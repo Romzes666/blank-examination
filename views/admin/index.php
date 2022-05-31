@@ -4,7 +4,7 @@
     <div class="mainContainer">
         <div class="mainBox" id="exam/list" title="Экзамены">
             <div class="mainIcon" style="--i:#FFB600">
-                <i class="fas fa-table"></i>
+                <i class="bi bi-collection"></i>
                 <h2>Экзамены</h2>
             </div>
             <div class="mainContent">
@@ -15,7 +15,7 @@
         </div>
         <div class="mainBox" id="user/index" title="Пользователи">
             <div class="mainIcon" style="--i:#0049FF">
-                <i class="fas fa-users"></i>
+                <i class="bi bi-person-fill"></i>
                 <h2>Пользователи</h2>
             </div>
             <div class="mainContent">
@@ -26,7 +26,7 @@
         </div>
         <div class="mainBox" id="expert/index" title="Эксперты">
             <div class="mainIcon" style="--i:#FFB600">
-                <i class="fas fa-chalkboard-teacher"></i>
+                <i class="bi bi-person-lines-fill"></i>
                 <h2>Эксперты</h2>
             </div>
             <div class="mainContent">
@@ -34,34 +34,34 @@
                 <p>Страница экспертов с основной информацией. На ней можно назначить проверку экзамена экспертом.</p>
             </div>
         </div>
-        <div class="mainBox" id="subject/index" title="Назначение экзамена">
+        <div class="mainBox" id="subject/index" title="Предметы">
             <div class="mainIcon" style="--i:#0049FF">
-                <i class="fas fa-th-list"></i>
-                <h2>Добавление предмета</h2>
+                <i class="bi bi-book"></i>
+                <h2>Предметы</h2>
             </div>
             <div class="mainContent">
-                <h2>Добавление шаблона предмета</h2>
-                <p>Панель управления добавления предмета.</p>
+                <h2>Предметы</h2>
+                <p>Панель управления предметами.</p>
             </div>
         </div>
-        <div class="mainBox" id="template-blank/index" title="Конструткор">
+        <div class="mainBox" id="template-blank/index" title="Бланки">
             <div class="mainIcon" style="--i:#FFB600">
-                <i class="fas fa-hammer"></i>
-                <h2>Конструктор бланков</h2>
+                <i class="bi bi-file-earmark"></i>
+                <h2>Бланки</h2>
             </div>
             <div class="mainContent">
-                <h2>Конструктор бланков</h2>
-                <p>Страница конструирования бланков.</p>
+                <h2>Бланки</h2>
+                <p>Панель управления бланками.</p>
             </div>
         </div>
-        <div class="mainBox" id="logout" title="Выход">
+        <div class="mainBox" id="variant/index" title="Варианты">
             <div class="mainIcon" style="--i:#0049FF">
-                <i class="fas fa-list-alt"></i>
-                <h2>Добавление варианта</h2>
+                <i class="bi bi-list-ol"></i>
+                <h2>Варианты</h2>
             </div>
             <div class="mainContent">
-                <h2>Добавление варианта</h2>
-                <p>Нажмите чтобы перейти на страницу добавления варианта.</p>
+                <h2>Варианты</h2>
+                <p>Панель управления вариантами</p>
             </div>
         </div>
     </div>

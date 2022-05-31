@@ -33,8 +33,8 @@ class Answers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_variant', 'answer', 'score', 'diff_score', 'id_task'], 'required'],
-            [['id_variant', 'score', 'diff_score', 'id_task'], 'integer'],
+            [['id_variant', 'answer', 'score', 'id_task'], 'required'],
+            [['id_variant', 'score', 'id_task'], 'integer'],
             [['answer'], 'string', 'max' => 255],
             [['id_variant'], 'exist', 'skipOnError' => true, 'targetClass' => Variant::className(), 'targetAttribute' => ['id_variant' => 'id']],
             [['id_task'], 'exist', 'skipOnError' => true, 'targetClass' => Task::className(), 'targetAttribute' => ['id_task' => 'id']],

@@ -7,14 +7,15 @@ use Yii;
 /**
  * This is the model class for table "template_blank".
  *
- * @property int $id
- * @property int $id_subject
- * @property string $type
+ * @property int $id_tb
+ * @property string $type_blank
  * @property int|null $input_count
  * @property string $image_name
+ * @property int $class_templ
+ * @property string $type_test
  *
  * @property BlankInputs[] $blankInputs
- * @property Subject $subject
+ * @property SubjectBlanks[] $subjectBlanks
  */
 class TemplateBlank extends \yii\db\ActiveRecord
 {
@@ -32,11 +33,11 @@ class TemplateBlank extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_subject', 'type', 'image_name'], 'required'],
-            [['id_subject', 'input_count'], 'integer'],
-            [['type'], 'string', 'max' => 50],
+            [['type_blank', 'image_name', 'class_templ', 'type_test'], 'required'],
+            [['input_count', 'class_templ'], 'integer'],
+            [['type_blank'], 'string', 'max' => 50],
             [['image_name'], 'string', 'max' => 255],
-            [['id_subject'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['id_subject' => 'id']],
+            [['type_test'], 'string', 'max' => 10],
         ];
     }
 
@@ -46,12 +47,12 @@ class TemplateBlank extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'id_subject' => 'Id Subject',
-            'type' => 'Type',
-            'input_count' => 'Input Count',
+            'id_tb' => 'ID',
+            'type_blank' => 'Тип бланка',
+            'input_count' => 'Количество полей',
             'image_name' => 'Image Name',
-            'subject.name' => 'Name subject'
+            'class_templ' => 'Номер класса',
+            'type_test' => 'Тип тестирования',
         ];
     }
 
@@ -62,20 +63,16 @@ class TemplateBlank extends \yii\db\ActiveRecord
      */
     public function getBlankInputs()
     {
-        return $this->hasMany(BlankInputs::className(), ['blank_id' => 'id']);
+        return $this->hasMany(BlankInputs::className(), ['blank_id' => 'id_tb']);
     }
 
     /**
-     * Gets query for [[Subject]].
+     * Gets query for [[SubjectBlanks]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSubject()
+    public function getSubjectBlanks()
     {
-        return $this->hasOne(Subject::className(), ['id' => 'id_subject']);
-    }
-    public function getName()
-    {
-        return $this->subject->name;
+        return $this->hasMany(SubjectBlanks::className(), ['id_templateblank' => 'id_tb']);
     }
 }

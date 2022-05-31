@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "blank_inputs".
  *
  * @property int $id
- * @property int|null $task_id
  * @property int $blank_id
  * @property int $input_width
  * @property int $input_height
@@ -35,11 +34,11 @@ class BlankInputs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['task_id', 'blank_id', 'input_width', 'input_height', 'input_top', 'input_left'], 'integer'],
+            [['input_width', 'input_height', 'input_top', 'input_left'], 'string'],
+            ['blank_id', 'integer'],
             [['blank_id', 'input_width', 'input_height', 'input_top', 'input_left', 'input_tooltip'], 'required'],
             [['input_tooltip'], 'string', 'max' => 255],
-            [['blank_id'], 'exist', 'skipOnError' => true, 'targetClass' => TemplateBlank::className(), 'targetAttribute' => ['blank_id' => 'id']],
-            [['task_id'], 'exist', 'skipOnError' => true, 'targetClass' => Task::className(), 'targetAttribute' => ['task_id' => 'id']],
+            [['blank_id'], 'exist', 'skipOnError' => true, 'targetClass' => TemplateBlank::className(), 'targetAttribute' => ['blank_id' => 'id_tb']],
         ];
     }
 
@@ -50,7 +49,6 @@ class BlankInputs extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'task_id' => 'Task ID',
             'blank_id' => 'Blank ID',
             'input_width' => 'Input Width',
             'input_height' => 'Input Height',
@@ -67,16 +65,25 @@ class BlankInputs extends \yii\db\ActiveRecord
      */
     public function getBlank()
     {
-        return $this->hasOne(TemplateBlank::className(), ['id' => 'blank_id']);
+        return $this->hasOne(TemplateBlank::className(), ['id_tb' => 'blank_id']);
     }
 
-    /**
-     * Gets query for [[Task]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTask()
+    public static function saveBlankInputs($blankId) : bool
     {
-        return $this->hasOne(Task::className(), ['id' => 'task_id']);
+        $len = $_POST['width'];
+        for ($i = 0; $i < count($len); $i++) {
+            $inputs = new BlankInputs();
+            $inputs->input_height = $_POST['height'][$i];
+            $inputs->input_width = $_POST['width'][$i];
+            $inputs->input_left = $_POST['left'][$i];
+            $inputs->input_top = $_POST['top'][$i];
+            $inputs->input_tooltip = $_POST['title'][$i];
+            $inputs->blank_id = $blankId;
+            if ($inputs->save()) {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
 }

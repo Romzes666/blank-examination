@@ -13,8 +13,8 @@ use Yii;
  * @property string $type
  * @property int $count_task
  *
+ * @property SubjectBlanks[] $subjectBlanks
  * @property Task[] $tasks
- * @property TemplateBlank[] $templateBlanks
  * @property Variant[] $variants
  */
 class Subject extends \yii\db\ActiveRecord
@@ -55,6 +55,16 @@ class Subject extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[SubjectBlanks]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubjectBlanks()
+    {
+        return $this->hasMany(SubjectBlanks::className(), ['id_subject' => 'id']);
+    }
+
+    /**
      * Gets query for [[Tasks]].
      *
      * @return \yii\db\ActiveQuery
@@ -62,16 +72,6 @@ class Subject extends \yii\db\ActiveRecord
     public function getTasks()
     {
         return $this->hasMany(Task::className(), ['id_subject' => 'id']);
-    }
-
-    /**
-     * Gets query for [[TemplateBlanks]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTemplateBlanks()
-    {
-        return $this->hasMany(TemplateBlank::className(), ['id_subject' => 'id']);
     }
 
     /**

@@ -9,6 +9,37 @@ const inputHeight = document.getElementById('heightInput');
 const rangeWidth = document.getElementById('widthRange');
 const rangeHeight = document.getElementById('heightRange');
 const hint = document.getElementById('hint');
+$("#save-form").submit(function(event) {
+    event.preventDefault(); // stopping submitting
+    event.stopImmediatePropagation();
+    let data = new FormData(this);
+    let url = $(this).attr('action');
+    if ($('#checkInputs').is(':checked')){
+        $('.frame').each(function (i) {
+            data.append('title[]', this.hasAttribute('title') ? $(this).attr('title') : '');
+            data.append('width[]', $(this).css('width'));
+            data.append('top[]', $(this).css('top'));
+            data.append('height[]', $(this).css('height'));
+            data.append('left[]', $(this).css('left'))
+        });
+    }
+    $.ajax({
+        url: url,
+        type: 'post',
+        dataType: 'json',
+        data: data,
+        contentType:false,
+        cache:false,
+        processData:false,
+    })
+        .done(function(response) {
+            console.log("Wow you commented");
+        })
+        .fail(function() {
+            console.log("error");
+        });
+
+});
 $(document).ready(function () {
     $('#form-template').keydown(function (event) {
         if (event.keyCode === 13 && event.target.id !== 'hint') {
@@ -41,7 +72,6 @@ $(window).scroll(function () {
     $('.form-area').css('top', posTop + $(this).scrollTop());
     scrollPos = st;
 });
-let blank_id = $('#id_blank').val();
 $('input[id=widthInput]').keyup(function () {
     let flag = inputWidth.type === 'number' && inputWidth.value >= 10 && inputWidth.value <= maxInputWidth
         && inputWidth.value.indexOf('e') === -1;
@@ -97,7 +127,9 @@ $('#addInput').click(function () {
     rangeHeight.value = 30;
     inputHeight.value = '';
     hint.value = '';
-    let input = '<div id="inp' + count + '" class="draggable frame"></div>';
+    let input = `
+<div name="inp${count}" id="inp${count}" class="draggable frame">${count}</div>
+`;
     $('.blank-area').prepend(input);
     activeInput = $('#inp' + count).attr('id');
     count++;
