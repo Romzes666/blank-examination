@@ -1,6 +1,6 @@
 <div class="main-menu" id="menu">
     <title>Главное меню</title>
-    <h3 id="name_menu">Главное меню</h3>
+    <h3 id="name_menu">Панель администратора</h3>
     <div class="mainContainer">
         <div class="mainBox" id="exam/list" title="Экзамены">
             <div class="mainIcon" style="--i:#FFB600">

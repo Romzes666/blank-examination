@@ -22,7 +22,7 @@ class Answers extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'answers';
     }
@@ -30,14 +30,14 @@ class Answers extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id_variant', 'answer', 'score', 'id_task'], 'required'],
             [['id_variant', 'score', 'id_task'], 'integer'],
             [['answer'], 'string', 'max' => 255],
-            [['id_variant'], 'exist', 'skipOnError' => true, 'targetClass' => Variant::className(), 'targetAttribute' => ['id_variant' => 'id']],
-            [['id_task'], 'exist', 'skipOnError' => true, 'targetClass' => Task::className(), 'targetAttribute' => ['id_task' => 'id']],
+            [['id_variant'], 'exist', 'skipOnError' => true, 'targetClass' => Variant::class, 'targetAttribute' => ['id_variant' => 'id']],
+            [['id_task'], 'exist', 'skipOnError' => true, 'targetClass' => Task::class, 'targetAttribute' => ['id_task' => 'id']],
         ];
     }
 
@@ -61,9 +61,9 @@ class Answers extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTask()
+    public function getTask(): \yii\db\ActiveQuery
     {
-        return $this->hasOne(Task::className(), ['id' => 'id_task']);
+        return $this->hasOne(Task::class, ['id' => 'id_task']);
     }
 
     /**
@@ -71,8 +71,8 @@ class Answers extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getVariant()
+    public function getVariant(): \yii\db\ActiveQuery
     {
-        return $this->hasOne(Variant::className(), ['id' => 'id_variant']);
+        return $this->hasOne(Variant::class, ['id' => 'id_variant']);
     }
 }

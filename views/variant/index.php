@@ -22,8 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Создать вариант', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -37,8 +35,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'subject.type',
             'subject.class',
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Variant $model, $key, $index, $column) {
+                'class' => 'yii\grid\ActionColumn',
+                'header' => 'Тестируемые',
+                'template' => '{view}',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('<button class="btn-primary">Посмотреть</button>', $url, [
+                            'title' => Yii::t('app', 'lead-view'),
+                        ]);
+                    },
+                ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return 'index.php?r=flat-specifications/index&id='.$model->id;
+                }
+            ],
+            [
+                'class' => ActionColumn::class,
+                'urlCreator' => function ($action, Variant $model) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

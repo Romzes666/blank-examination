@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SubjectBlanks */
-/* @var $template app\models\TemplateBlank */
+/* @var $template app\models\TemplateBlank[] */
 $this->title = 'Добавление';
 $this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Бланки', 'url' => ['index']];

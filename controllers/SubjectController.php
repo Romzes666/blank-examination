@@ -91,26 +91,26 @@ class SubjectController extends Controller
      */
     public function actionCreate(): Response|string
     {
-        $model = new Subject();
+        $subject = new Subject();
         if ($this->request->isPost) {
-            $model->name = $_POST['Subject']['name'];
-            $model->class = $_POST['Subject']['class'];
-            $model->type = $_POST['Subject']['type'];
-            $model->count_task = $_POST['Subject']['count_task'];
-            if($model->save()){
-                $model_id = $model->id;
+            $subject->name = $_POST['Subject']['name'];
+            $subject->class = $_POST['Subject']['class'];
+            $subject->type = $_POST['Subject']['type'];
+            $subject->count_task = $_POST['Subject']['count_task'];
+            if($subject->save()){
+                $model_id = $subject->id;
                 if (Task::saveTask($model_id)) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    return $this->redirect(['view', 'id' => $subject->id]);
                 }
                 throw new Exception('Произошла ошибка во время сохранения заданий.');
             }
-            print_r($model->errors);
+            print_r($subject->errors);
         }
         else {
-            $model->loadDefaultValues();
+            $subject->loadDefaultValues();
         }
         return $this->render('create', [
-            'model' => $model,
+            'model' => $subject,
         ]);
     }
 
