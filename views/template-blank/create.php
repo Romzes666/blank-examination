@@ -44,10 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <label for="checkInputs">Текстовые поля</label>
         <input type="checkbox" id="checkInputs" name="checkInputs">
     </div>
-    <div id="image-div" class="newInn">
-        <div class="blank-area">
-            <div class="image-frame">
-                <img id="blank" src="/web/blanks/default.jpg">
+    <div class="blank-wrapper">
+        <div id="image-div">
+            <div class="blank-area">
+                <div class="image-frame">
+                    <img id="blank" src="/web/blanks/default.jpg">
+                </div>
             </div>
         </div>
     </div>
@@ -92,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <button type="submit" class="btn-success">Сохранить</button>
+    <button type="submit" class="btn-success mt-4">Сохранить</button>
     <?php $form->end(); ?>
 </div>
 <?php
