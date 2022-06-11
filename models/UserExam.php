@@ -12,7 +12,7 @@ use Yii;
  * @property int $id_user
  * @property string $status
  *
- * @property UserTable $user
+ * @property User $user
  * @property Variant $variant
  */
 class UserExam extends \yii\db\ActiveRecord
@@ -34,8 +34,8 @@ class UserExam extends \yii\db\ActiveRecord
             [['id_variant', 'id_user', 'status'], 'required'],
             [['id_variant', 'id_user'], 'integer'],
             [['status'], 'string'],
-            [['id_variant'], 'exist', 'skipOnError' => true, 'targetClass' => Variant::className(), 'targetAttribute' => ['id_variant' => 'id']],
-            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => UserTable::className(), 'targetAttribute' => ['id_user' => 'user_id']],
+            [['id_variant'], 'exist', 'skipOnError' => true, 'targetClass' => Variant::class, 'targetAttribute' => ['id_variant' => 'id']],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['id_user' => 'user_id']],
         ];
     }
 
@@ -59,7 +59,7 @@ class UserExam extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(UserTable::className(), ['user_id' => 'id_user']);
+        return $this->hasOne(User::class, ['user_id' => 'id_user']);
     }
 
     /**
@@ -69,6 +69,6 @@ class UserExam extends \yii\db\ActiveRecord
      */
     public function getVariant()
     {
-        return $this->hasOne(Variant::className(), ['id' => 'id_variant']);
+        return $this->hasOne(Variant::class, ['id' => 'id_variant']);
     }
 }

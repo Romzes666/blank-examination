@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\User;
+use app\models\UserExam;
 use app\models\UserSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,7 +24,7 @@ class UserController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -38,6 +40,19 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            $userExam = new UserExam();
+            $userExam->id_user = $_POST['idUser'];
+            $userExam->id_variant = $_POST['variant'];
+            if ($userExam->save(false)) {
+                return ['message' => 'Тестирование назначено!'];
+            }
+            else {
+                return ['message' => 'Произошла ошибка'];
+            }
+        }
+
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
