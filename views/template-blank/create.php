@@ -53,48 +53,69 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <div id="menu-constructor" style="display: flex; position: fixed; width: 100%; bottom: 0; left: 0; background: #111; padding: 20px 10px">
-        <div>
+
+
+
+
+    <div id="menu-constructor" class="row">
+        <div class="line-resize"></div>
+        <div class="buttons-area col-md-2">
             <button id="addInput" type="button" class="btn-primary elem-btn-lg mb-3">
                 Добавить input
             </button>
-            <button id="deleteInput" type="button" class="btn-primary elem-btn-lg mb3">
+            <button id="deleteInput" type="button" class="btn-primary elem-btn-lg mb-4">
                 Удалить input
             </button>
         </div>
-        <div class="s-range row ml-3 mr-3">
-            <label for="widthRange" class="form-label text-white">Ширина:</label>
-            <div class="col-12">
-                <input type="range" min="10" max="425" value="300" class="form-range"
-                       id="widthRange" oninput="widthInput.value = widthRange.value">
+        <div class="range-area col-md-4">
+            <div class="s-range">
+                <label for="widthRange" class="form-label text-white text-center mb-0">Ширина</label>
+                <div>
+                    <input type="range" min="10" max="425" value="300" class="form-range"
+                           id="widthRange" oninput="widthInput.value = widthRange.value">
+                </div>
+                <div class="d-flex justify-content-center mt-2">
+                    <input class="text-center form-control" type="number" autocomplete="off"
+                           placeholder="50 - 600" id="widthInput"
+                           oninput="widthRange.value = widthInput.value">
+                </div>
             </div>
-            <div class="col-12 d-flex justify-content-center mt-3">
-                <input class="text-center form-control" type="number" autocomplete="off"
-                       placeholder="50 - 600" id="widthInput"
-                       oninput="widthRange.value = widthInput.value">
+            <div class="s-range mt-2">
+                <label for="heightRange" class="form-label text-white text-center mb-0">Высота</label>
+                <div>
+                    <input type="range" min="10" max="200" value="30" class="form-range"
+                           id="heightRange" oninput="heightInput.value = heightRange.value">
+                </div>
+                <div class="d-flex justify-content-center mt-2">
+                    <input class="text-center form-control" type="number" autocomplete="off"
+                           placeholder="20 - 200" id="heightInput"
+                           oninput="heightRange.value = heightInput.value">
+                </div>
             </div>
         </div>
-        <div class="s-range row ml-3 mr-3">
-            <label for="heightRange" class="form-label text-white">Высота:</label>
-            <div class="col-12">
-                <input type="range" min="10" max="200" value="30" class="form-range"
-                       id="heightRange" oninput="heightInput.value = heightRange.value">
+        <div class="tooltip-area col-md-4">
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio"
+                           id="tooltip" checked>
+                    <label class="form-check-label" for="tooltip">
+                        Подсказка
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio"
+                           id="sign">
+                    <label class="form-check-label" for="sign">
+                        Подпись
+                    </label>
+                </div>
             </div>
-            <div class="col-12 d-flex justify-content-center mt-3">
-                <input class="text-center form-control" type="number" autocomplete="off"
-                       placeholder="20 - 200" id="heightInput"
-                       oninput="heightRange.value = heightInput.value">
-            </div>
-        </div>
-        <div class="row row-cols-lg-2 d-flex justify-content-center mt-2 ml-3 mr-3">
-            <h3 class="text-center text-white">Подсказка</h3>
-            <p>Если это Код/Название предмета
+            <p class="text-center">Если это Код/Название предмета
                 напишите здесь КОД/НАЗВАНИЕ</p>
-            <textarea id="hint" class="form-control col-12" rows="3"></textarea>
+            <textarea id="hint" class="form-control" rows="6"></textarea>
         </div>
     </div>
-
-    <button type="submit" class="btn-success mt-4">Сохранить</button>
+    <button type="submit" class="btn-success mt-4 mb-2 btn-create-blank">Сохранить</button>
     <?php $form->end(); ?>
 </div>
 <?php

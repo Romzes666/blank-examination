@@ -1047,6 +1047,13 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px 20px;
     margin: 0;
 }
+.btn-create-blank{
+    padding: 7px 20px;
+    border-radius: 3px;
+    border: none;
+    font-weight: bold;
+    transition: all .3s;
+}
 .frame {
     display: flex;
     justify-content: center;
@@ -1062,6 +1069,66 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 1px;
     background: rgba(0, 123, 255, 0.6);
 }
+/*===========*/
+/*Constructor menu*/
+#menu-constructor {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    left: 0;
+    margin: 0;
+    background: #111;
+    padding: 10px 0 15px 0;
+}
+#menu-constructor .line-resize{
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    cursor: grab;
+    margin-top: -10px;
+    border-radius: 5px;
+}
+#menu-constructor .buttons-area,
+#menu-constructor .range-area,
+#menu-constructor .tooltip-area{
+    display: flex;
+    flex-direction: column;
+}
+
+#menu-constructor .buttons-area{
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#menu-constructor .buttons-area #addInput,
+#menu-constructor .buttons-area #deleteInput{
+    padding: 7px 0;
+    width: 200px;
+}
+
+#menu-constructor .range-area{
+    justify-content: center;
+}
+#menu-constructor .range-area .s-range{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+#menu-constructor .tooltip-area{
+    gap: 10px;
+}
+#menu-constructor .tooltip-area .form-group{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+#menu-constructor .tooltip-area #hint{
+    max-height: 120px;
+}
+/*===========*/
 /*Constructor form*/
 .construct-wrapper{
     min-height: 100vh;
