@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Subject;
 use app\models\User;
 use app\models\UserExam;
 use app\models\UserSearch;
@@ -54,11 +55,13 @@ class UserController extends Controller
         }
 
         $searchModel = new UserSearch();
+        $subjects = Subject::find()->asArray()->all();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'subjects' => $subjects,
         ]);
     }
 

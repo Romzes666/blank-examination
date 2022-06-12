@@ -11,6 +11,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $subjects \app\models\Subject[] */
 
 $this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = ['label' => 'Панель администратора', 'url' => ['admin/index']];
@@ -33,9 +34,35 @@ $this->params['breadcrumbs']['admin'] = $this->title;
     <span id="message"></span>
     </br>
     <div class="form-group row">
+        <label for="name" class="col-sm-5 col-form-label">Тип тестирования:</label>
+        <div class="col-sm-6">
+            <input type="text" list="types" class="form-control"
+                   name="type-test" id="type-test" placeholder="Тип тестирования" required
+            >
+            <datalist style="z-index: 1000" id="types">
+                <option class="option-sub" value="ГВЭ">ГВЭ</option>
+                <option class="option-sub" value="ЕГЭ">ЕГЭ</option>
+                <option class="option-sub" value="ОГЭ">ОГЭ</option>
+            </datalist>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Предмет</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="subject" id="subject" placeholder="Предмет" required>
+            <select name="subject" id="subject" class="black-select form-control text-center">
+                <option class="option-sub" value="Русский язык">Русский язык</option>
+                <option class="option-sub" value="Физика">Физика</option>
+                <option class="option-sub" value="Математика(профильный)">Математика(профильный)</option>
+                <option class="option-sub" value="Химия">Химия</option>
+                <option class="option-sub" value="Информатика">Информатика</option>
+                <option class="option-sub" value="Биология">Биология</option>
+                <option class="option-sub" value="История">История</option>
+                <option class="option-sub" value="Георграфия">Георграфия</option>
+                <option class="option-sub" value="Английский язык">Английский язык</option>
+                <option class="option-sub" value="Обществознание">Обществознание</option>
+                <option class="option-sub" value="Литература">Литература</option>
+                <option class="option-sub" value="Математика(базовый)">Математика(базовый)</option>
+            </select>
         </div>
     </div>
     <div class="form-group row">
@@ -85,7 +112,6 @@ $this->params['breadcrumbs']['admin'] = $this->title;
             ],
         ],
     ]); ?>
-
 
 </div>
 <?php

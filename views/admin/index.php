@@ -2,7 +2,7 @@
     <title>Главное меню</title>
     <h3 id="name_menu">Панель администратора</h3>
     <div class="mainContainer">
-        <div class="mainBox" id="exam/list" title="Экзамены">
+        <div class="mainBox" id="user-exam/index" title="Экзамены">
             <div class="mainIcon" style="--i:#FFB600">
                 <i class="bi bi-collection"></i>
                 <h2>Экзамены</h2>
