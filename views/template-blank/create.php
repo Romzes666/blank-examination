@@ -53,12 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-
-
-
-
     <div id="menu-constructor" class="row">
-        <div class="line-resize"></div>
+<!--        <div class="line-resize"></div>-->
         <div class="buttons-area col-md-2">
             <button id="addInput" type="button" class="btn-primary elem-btn-lg mb-3">
                 Добавить input
@@ -97,15 +93,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="help"
-                           id="tooltip" checked>
-                    <label class="form-check-label" for="tooltip">
+                           id="check_tooltip" value="help" checked>
+                    <label class="form-check-label" for="check_tooltip">
                         Подсказка
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="caption"
-                           id="sign">
-                    <label class="form-check-label" for="sign">
+                           id="check_sign" value="caption">
+                    <label class="form-check-label" for="check_sign">
                         Подпись
                     </label>
                 </div>

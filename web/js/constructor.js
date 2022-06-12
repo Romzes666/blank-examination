@@ -20,7 +20,8 @@ $("#save-form").submit(function(event) {
             data.append('width[]', $(this).css('width'));
             data.append('top[]', $(this).css('top'));
             data.append('height[]', $(this).css('height'));
-            data.append('left[]', $(this).css('left'))
+            data.append('left[]', $(this).css('left'));
+            data.append('type[]', $(this).attr('value'));
         });
     }
     $.ajax({
@@ -63,13 +64,13 @@ $(document).ready(function () {
     $('#widthInput').attr('placeholder', strWidth);
     $('#heightInput').attr('placeholder', strHeight);
 });
-$(window).scroll(function () {
-    let st = $(this).scrollTop();
-    if (st > scrollPos)
-        $('.form-area').css('top', posTop + $(this).scrollTop());
-    $('.form-area').css('top', posTop + $(this).scrollTop());
-    scrollPos = st;
-});
+// $(window).scroll(function () {
+//     let st = $(this).scrollTop();
+//     if (st > scrollPos)
+//         $('.form-area').css('top', posTop + $(this).scrollTop());
+//     $('.form-area').css('top', posTop + $(this).scrollTop());
+//     scrollPos = st;
+// });
 $('input[id=widthInput]').keyup(function () {
     let flag = inputWidth.type === 'number' && inputWidth.value >= 10 && inputWidth.value <= maxInputWidth
         && inputWidth.value.indexOf('e') === -1;
@@ -114,6 +115,18 @@ $('input[id=heightRange]').change(function () {
         $('#' + activeInput).css('height', inputHeight.value);
     }
 });
+$('input[id=check_tooltip]').change(function () {
+    $('input[id=check_sign]').prop('checked', false);
+    if (activeInput !== '') {
+        $('#' + activeInput).attr('value', this.value);
+    }
+});
+$('input[id=check_sign]').change(function () {
+    $('input[id=check_tooltip]').prop('checked', false);
+    if (activeInput !== '') {
+        $('#' + activeInput).attr('value', this.value);
+    }
+});
 $('textarea[id=hint]').change(function () {
     if (activeInput === '' || this.value.length < 5)
         return;
@@ -126,7 +139,7 @@ $('#addInput').click(function () {
     inputHeight.value = '';
     hint.value = '';
     let input = `
-<div name="inp${count}" id="inp${count}" class="draggable frame">${count}</div>
+<div name="inp${count}" id="inp${count}" value="help" class="draggable frame">${count}</div>
 `;
     $('.blank-area').prepend(input);
     activeInput = $('#inp' + count).attr('id');
@@ -143,9 +156,21 @@ $('#deleteInput').click(function () {
 });
 $(document).on('click', '.frame', function () {
     activeInput = $(this).attr('id');
+    $('.frame').each(function () {
+        $(this).css('text-decoration', 'none');
+    });
+    $(this).css('text-decoration', 'underline');
     rangeWidth.value = this.offsetWidth;
     inputWidth.value = this.offsetWidth;
     rangeHeight.value = this.offsetHeight;
     inputHeight.value = this.offsetHeight;
     hint.value = this.title;
+    if ($(this).attr('value') === 'help') {
+        $('input[id=check_tooltip]').prop('checked', true);
+        $('input[id=check_sign]').prop('checked', false);
+    }
+    if ($(this).attr('value') === 'caption') {
+        $('input[id=check_sign]').prop('checked', true);
+        $('input[id=check_tooltip]').prop('checked', false);
+    }
 });
