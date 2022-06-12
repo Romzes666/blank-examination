@@ -35,6 +35,7 @@ class TemplateBlank extends \yii\db\ActiveRecord
         return [
             [['type_blank', 'image_name', 'class_templ', 'type_test'], 'required'],
             [['input_count', 'class_templ'], 'integer'],
+            ['type_blank', 'unique', 'targetAttribute' => ['type_blank', 'type_test']],
             [['type_blank'], 'string', 'max' => 50],
             [['image_name'], 'string', 'max' => 255],
             [['type_test'], 'string', 'max' => 10],

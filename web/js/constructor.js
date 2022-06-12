@@ -31,13 +31,11 @@ $("#save-form").submit(function(event) {
         contentType:false,
         cache:false,
         processData:false,
+        beforeSend:function()
+        {
+            console.log('fkkf')
+        }
     })
-        .done(function(response) {
-            console.log("Wow you commented");
-        })
-        .fail(function() {
-            console.log("error");
-        });
 
 });
 $(document).ready(function () {
