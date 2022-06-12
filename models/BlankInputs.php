@@ -14,6 +14,7 @@ use Yii;
  * @property int $input_top
  * @property int $input_left
  * @property string $input_tooltip
+ * @property string $input_type
  *
  * @property TemplateBlank $blank
  * @property Task $task
@@ -34,11 +35,11 @@ class BlankInputs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['input_width', 'input_height', 'input_top', 'input_left'], 'string'],
+            [['input_width', 'input_height', 'input_top', 'input_left', 'input_type'], 'string'],
             ['blank_id', 'integer'],
             [['blank_id', 'input_width', 'input_height', 'input_top', 'input_left', 'input_tooltip'], 'required'],
             [['input_tooltip'], 'string', 'max' => 255],
-            [['blank_id'], 'exist', 'skipOnError' => true, 'targetClass' => TemplateBlank::className(), 'targetAttribute' => ['blank_id' => 'id_tb']],
+            [['blank_id'], 'exist', 'skipOnError' => true, 'targetClass' => TemplateBlank::class, 'targetAttribute' => ['blank_id' => 'id_tb']],
         ];
     }
 
@@ -79,6 +80,9 @@ class BlankInputs extends \yii\db\ActiveRecord
             $inputs->input_top = $_POST['top'][$i];
             $inputs->input_tooltip = $_POST['title'][$i];
             $inputs->blank_id = $blankId;
+            if ($_POST['caption'] === 'on') {
+                $inputs->input_type = 'caption';
+            }
             if ($inputs->save()) {
                 continue;
             }

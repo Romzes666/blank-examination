@@ -96,14 +96,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="tooltip-area col-md-4">
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio"
+                    <input class="form-check-input" type="radio" name="help"
                            id="tooltip" checked>
                     <label class="form-check-label" for="tooltip">
                         Подсказка
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio"
+                    <input class="form-check-input" type="radio" name="caption"
                            id="sign">
                     <label class="form-check-label" for="sign">
                         Подпись
