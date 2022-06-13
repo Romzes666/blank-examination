@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 ],
                 'urlCreator' => function ($action, $model, $key, $index) {
-                    return 'index.php?r=exam/registration';
+                    return 'index.php?r=exam/registration&id_sb=' .$model->id_variant;
                 }
             ],
             [
