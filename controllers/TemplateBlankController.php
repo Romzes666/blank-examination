@@ -84,7 +84,7 @@ class TemplateBlankController extends Controller
             $model->class_templ = $_POST['TemplateBlank']['class_templ'];
             $model->image_name = 'list.jpg';
 
-            if ($_POST['checkInputs'] === 'on') {
+            if ($_POST['checkInputs'] == 'on') {
                 $len = $_POST['width'];
                 $model->input_count = count($len);
                 if ($model->save()) {

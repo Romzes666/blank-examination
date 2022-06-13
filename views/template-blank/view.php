@@ -50,7 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
             left: ".$input['input_left']."; 
             width: ".$input['input_width']."; 
             height: ".$input['input_height'].";' 
-            class='draggable frame'></div>";
+            class='hover_div'>
+                <a class='hover_a' style='width: 200px'>
+                <i class='far fa-question-circle'></i>".$input['input_tooltip']."</a></div>";
             }
             ?>
             <div class="image-frame">
@@ -60,3 +62,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
+<?php
+$this->registerJsFile(
+    '@web/js/blank.js',
+    ['depends' => [\yii\web\JqueryAsset::class]]
+);
+?>

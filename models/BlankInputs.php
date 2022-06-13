@@ -9,14 +9,14 @@ use Yii;
  *
  * @property int $id
  * @property int $blank_id
- * @property int $input_width
- * @property int $input_height
- * @property int $input_top
- * @property int $input_left
+ * @property string $input_width
+ * @property string $input_height
+ * @property string $input_top
+ * @property string $input_left
  * @property string $input_tooltip
+ * @property string $type
  *
  * @property TemplateBlank $blank
- * @property Task $task
  */
 class BlankInputs extends \yii\db\ActiveRecord
 {
@@ -34,9 +34,10 @@ class BlankInputs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['input_width', 'input_height', 'input_top', 'input_left'], 'string'],
-            ['blank_id', 'integer'],
             [['blank_id', 'input_width', 'input_height', 'input_top', 'input_left', 'input_tooltip'], 'required'],
+            [['blank_id'], 'integer'],
+            [['type'], 'string'],
+            [['input_width', 'input_height', 'input_top', 'input_left'], 'string', 'max' => 50],
             [['input_tooltip'], 'string', 'max' => 255],
             [['blank_id'], 'exist', 'skipOnError' => true, 'targetClass' => TemplateBlank::class, 'targetAttribute' => ['blank_id' => 'id_tb']],
         ];
@@ -55,17 +56,8 @@ class BlankInputs extends \yii\db\ActiveRecord
             'input_top' => 'Input Top',
             'input_left' => 'Input Left',
             'input_tooltip' => 'Input Tooltip',
+            'type' => 'Type',
         ];
-    }
-
-    /**
-     * Gets query for [[Blank]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getBlank()
-    {
-        return $this->hasOne(TemplateBlank::className(), ['id_tb' => 'blank_id']);
     }
 
     public static function saveBlankInputs($blankId) : bool
@@ -79,11 +71,22 @@ class BlankInputs extends \yii\db\ActiveRecord
             $inputs->input_top = $_POST['top'][$i];
             $inputs->input_tooltip = $_POST['title'][$i];
             $inputs->blank_id = $blankId;
+            $inputs->type = $_POST['type'][$i];
             if ($inputs->save(false)) {
                 continue;
             }
             return false;
         }
         return true;
+    }
+
+    /**
+     * Gets query for [[Blank]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBlank()
+    {
+        return $this->hasOne(TemplateBlank::class, ['id_tb' => 'blank_id']);
     }
 }

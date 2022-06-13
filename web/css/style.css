@@ -826,6 +826,16 @@ h4 {
     background-color: rgba(85, 13, 255, 0.3);
 }
 .hover_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    z-index: 999;
+    width: 300px;
+    height: 30px;
+    cursor: grab;
     border: rgba(0,0,0,0);
     border-radius: 8px;
 }
