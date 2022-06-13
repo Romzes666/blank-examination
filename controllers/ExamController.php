@@ -42,12 +42,12 @@ class ExamController extends Controller
 
     public function actionRegistration($id_sb)
     {
+        $variant = Variant::findOne(['id' => $id_sb]);
         $subjectBlanks = SubjectBlanks::findOne(['id_subject' => $id_sb]);
         $id_tb = $subjectBlanks->id_templateblank;
-        $blank = TemplateBlank::findOne(['id_tb' => $id_tb]);
         $inputs = BlankInputs::find()->where(['blank_id' => $id_tb])->all();
         return $this->render('registration', [
-            'blank' => $blank,
+            'blank' => $variant,
             'inputs' => $inputs,
         ]);
     }
@@ -58,6 +58,18 @@ class ExamController extends Controller
         return $this->render('test', [
             'variant' => $variant,
         ]);
+    }
+
+    public function actionSave()
+    {
+        define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'].'/web/upload/user/blank/');
+        $img = $_POST['imgBase64'];
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = UPLOAD_DIR . uniqid() . '.png';
+        $success = file_put_contents($file, $data);
+        print $success ? $file : 'Unable to save the file.';
     }
 
     public function actionAnswers($id, $id_v)

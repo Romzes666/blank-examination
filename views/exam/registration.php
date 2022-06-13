@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $blank app\models\TemplateBlank */
+/* @var $blank app\models\Variant */
 /* @var $inputs */
 ?>
 <div class="slider">
@@ -35,7 +35,7 @@
         }
         ?>
         <div class="image-frame">
-            <img src="/web/blanks/templates/<?= $blank->class_templ . "/" . $blank->type_test ."/". $blank->type_blank . "/" . $blank->image_name?>">
+            <img src="/web/upload/variant/<?= $blank->number . "/1.jpg"?>">
         </div>
     </div>
 </div>

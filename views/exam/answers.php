@@ -16,7 +16,22 @@
         </div>
     </div>
 </div>
-<div id="image-div" class="newInn">
+<div id="type-fill" class="intro__inner">
+    <h1>Выберите как вы хотите заполнить 2 часть</h1>
+    <div class="form-group">
+        <button id="fill-site" class="btn btn-primary">На сайте</button>
+        <button id="fill-offline" class="btn btn-primary">Распечатать</button>
+    </div>
+</div>
+<div id="chapter-two" class="newInn">
+    <div class="blank-area">
+        <div class="image-frame">
+            <canvas width="1105" height="1560"></canvas>
+        </div>
+    <button id="save" class="btn btn-primary">Сохранить</button>
+    </div>
+</div>
+<div id="chapter-one" class="newInn">
     <div class="blank-area">
         <?php
         foreach ($inputs as $input) {
@@ -32,13 +47,19 @@
         <div class="image-frame">
             <img src="/web/blanks/templates/<?= $blank['class_templ'] . "/" . $blank['type_test'] ."/". $blank['type_blank'] . "/" . $blank['image_name']?>">
         </div>
+        <a href="index.php?r=exam/test&id=<?=$_GET['id_v']?>" class="btn btn-primary">Назад</a>
+        <a class="btn btn-primary continue">Продолжить</a>
+        </br>
     </div>
 </div>
-<br>
-<a href="index.php?r=exam/test&id=<?=$_GET['id_v']?>" class="btn btn-primary">Назад</a>
+</br>
 <?php
 $this->registerJsFile(
     '@web/js/blank.js',
+    ['depends' => [\yii\web\JqueryAsset::class]]
+);
+$this->registerJsFile(
+    '@web/js/answers.js',
     ['depends' => [\yii\web\JqueryAsset::class]]
 );
 ?>

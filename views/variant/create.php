@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <option class="option-sub" value="Информатика">Информатика</option>
                 <option class="option-sub" value="Биология">Биология</option>
                 <option class="option-sub" value="История">История</option>
-                <option class="option-sub" value="Георграфия">Георграфия</option>
+                <option class="option-sub" value="Георграфия">География</option>
                 <option class="option-sub" value="Английский язык">Английский язык</option>
                 <option class="option-sub" value="Обществознание">Обществознание</option>
                 <option class="option-sub" value="Литература">Литература</option>
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="form-group">
-            <label class="col-md-4">КИМ <span class="text-danger">*</span></label>
+            <label for="number">Вариант<span class="text-danger">*</span></label>
             <input class="form-control" id="number" name="number">
         </div>
 
