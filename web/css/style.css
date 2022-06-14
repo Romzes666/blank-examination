@@ -1453,6 +1453,82 @@ input[type=number]::-webkit-outer-spin-button {
     gap: 15px;
 }
 /*===========*/
+/*ExpertChecking*/
+.expert-wrapper {
+    min-height: 100vh;
+}
+
+.expert-check-area {
+    display: flex;
+    justify-content: center;
+}
+
+.expert-tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 22px;
+}
+
+.expert-task {
+    padding: 0 10px;
+}
+
+.expert-task .critery {
+    display: flex;
+    gap: 5px;
+}
+
+.critery-inp input {
+    width: 35px;
+    height: 25px;
+}
+
+.critery-title {
+    width: 90px;
+}
+
+.expert-buttons-area {
+    display: flex;
+    justify-content: center;
+}
+
+.additional-buttons {
+    gap: 10px;
+}
+
+.expert-buttons-area .btn {
+    border-radius: 0.25rem;
+    border: 2px solid #fff;
+    padding: 0.3rem 0.5rem;
+    margin: 0.5rem;
+    text-transform: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all .3s;
+}
+
+.save-button .btn:hover {
+    background-color: #198754;
+}
+
+.expert-blank-area {
+    overflow: auto;
+}
+
+.expert-blank-inner {
+    border: 3px solid rgba(150, 150, 150, 0.4);
+    width: 100%;
+    border-radius: 5px;
+}
+
+.expert-blank-inner img {
+    width: 100%;
+    min-width: 1105px;
+    min-height: 1560px;
+    object-fit: cover;
+    object-position: center;
+}
+/*===========*/
 /*============
 Media
  ===========*/
@@ -1504,7 +1580,7 @@ Media
 }
 /*MediaForConstructorBlanks*/
 @media (max-width: 1200px){
-    .blank-wrapper{
+    .blank-wrapper, .expert-blank-area {
         overflow: scroll;
     }
 }
