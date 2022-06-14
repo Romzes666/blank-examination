@@ -37,53 +37,59 @@ $(document).ready(function () {
                             if (data.template[i]['type_check'] === "Полное совпадение") {
                                 $('#var_tasks_container').append(`
                                 <div id="taska${i}" class="form-group row-main row-answers">
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">
-                                        	Задание ${data.template[i]['content']} :
+                                    <div class="row mb-1">
+                                        <label class="col-xl col-form-label">
+                                        	Задание ${data.template[i]['content']}
                                         </label>
-                                        <div class="col">
-                                        	<label for="task${i}">Ответ</label>
-                                        	<input name="answer${i}[]" class="form-control" id="task${i}" required>
-										</div>
-										<div class="col">
-											<label for="score${i}">Балл</label>
-                                        	<input name="score${i}[]" class="form-control" id="score${i}" required>
-										</div>
                                     </div>
-                                    </br>
-                    				<div class="row justify-content-center">
-                        				<div class='col'>
-                            				<button type='button' class='btn add-answers'>
-                                				Добавить
-                            				</button>
-                        				</div>
-                        				<div class='col'>
-                            				<button type='button' class='btn del-answers'>
-                                				Удалить
-                            				</button>
-                        				</div>
-                    				</div>
-                    			</div>
+                                    <div class="row row-answers">
+                                        <div class="col-sm-12 row-answers-inner">
+                                            <div class="col-sm-6 col-answer">
+                                                <label for="task${i}">Ответ</label>
+                                        	      <input name="answer${i}[]" class="form-control" id="task${i}" required>
+                                            </div>
+                                            <div class="col-sm-6 col-score">
+                                                <label for="score${i}">Балл</label>
+                                        	      <input name="score${i}[]" class="form-control" id="score${i}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-add-answers mt-4">
+                                        <div class="col-sm-12 col-add mb-3">
+                                            <button type='button' class='btn add-answers'>
+                                                Добавить
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-12 col-add">
+                                            <button type='button' class='btn del-answers'>
+                                                Удалить
+                                            </button>
+                                        </div>
+                                    </div>
+                              </div>
                                 `)
                             }
                             else {
 								$('#var_tasks_container').append(`
                                 <div id="taska${i}" class="form-group row-main row-answers">
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">
-                                        	Задание ${data.template[i]['content']} :
+                                    <div class="row mb-1">
+                                        <label class="col-xl col-form-label">
+                                        	Задание ${data.template[i]['content']}
                                         </label>
-                                        <div class="col">
-                                        	<label for="task${i}">Ответ</label>
-                                        	<input name="answer${i}[]" class="form-control" id="task${i}" required>
-										</div>
-										<div class="col">
-											<label for="score${i}">Балл</label>
-                                        	<input name="score${i}[]" class="form-control" id="score${i}" required>
-										</div>
                                     </div>
-                                    </br>
-                    			</div>
+                                    <div class="row row-answers">
+                                        <div class="col-sm-12 row-answers-inner">
+                                            <div class="col-sm-6 col-answer">
+                                              <label for="task${i}">Ответ</label>
+                                              <input name="answer${i}[]" class="form-control" id="task${i}" required>
+                                            </div>
+                                            <div class="col-sm-6 col-score">
+                                                <label for="score${i}">Балл</label>
+                                                <input name="score${i}[]" class="form-control" id="score${i}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                    			      </div>
                                 `)
 							}
                         }
@@ -174,18 +180,17 @@ $("#save-form").submit(function(event) {
 $(document).on('click', '.add-answers', function () {
     let parent = $(this).closest('.row-main').attr('id');
     let i = parent.substr(parent.length-1,1);
-    console.log(parent);
-    $(`#${parent}`).append(`
-						<div class="row">
-							<div class="col">
-								<label for="task${i}">Ответ</label>
-								<input name="answer${i}[]" class="form-control" id="task${i}" required>
-							</div>
-							<div class="col">
-								<label for="score${i}">Балл</label>
-								<input name="score${i}[]" class="form-control" id="score${i}" required>
-							</div>
-						</div>
+    $(`#${parent} .row-answers`).append(`
+            <div class="col-sm-12 row-answers-inner mt-3">
+                <div class="col-sm-6 col-answer">
+                    <label for="task${i}">Ответ</label>
+								    <input name="answer${i}[]" class="form-control" id="task${i}" required>
+                </div>
+                <div class="col-sm-6 col-score">
+                    <label for="score${i}">Балл</label>
+								    <input name="score${i}[]" class="form-control" id="score${i}" required>
+                </div>
+            </div>
             `);
 });
 $(document).on('click', '.del-answers', function () {

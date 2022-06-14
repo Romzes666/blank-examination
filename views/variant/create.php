@@ -68,23 +68,26 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <button type="button" id="continue" class="btn">Продолжить</button>
     </div>
-
-    <div id="tasks_area" class="intro__inner" style="display: none;">
-        <div class="intro__title">
-            <h3>Задания</h3>
-            <span id="message_tasks"></span>
-        </div>
-        <div id="tasks_page" class="tasks-container modal-body mb-5">
-            <div class="tasks-inner-area mb-5">
-                <div id="var_tasks_container" class="tasks-details">
+    <div class="variant-form-container">
+        <div class="main-container">
+            <div id="tasks_area" class="intro__inner" style="display: none;">
+                <div class="intro__title">
+                    <h3>Задания</h3>
+                    <span id="message_tasks"></span>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm" name="back_tasks" id="back_tasks">
-                    Назад
-                </button>
-                <div class="form-group">
-                    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+                <div id="tasks_page" class="tasks-container modal-body mb-5">
+                    <div class="tasks-inner-area mb-5">
+                        <div id="var_tasks_container" class="tasks-details">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm" name="back_tasks" id="back_tasks">
+                            Назад
+                        </button>
+                        <div class="form-group">
+                          <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

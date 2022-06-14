@@ -1378,9 +1378,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 /*===========*/
 /*MasterExamTestPage*/
-.variant-form-container{
-    margin-top: 120px;
-}
 .exam-test-inner,
 .exam-variant-inner{
     min-height: 100vh;
@@ -1395,8 +1392,8 @@ input[type=number]::-webkit-outer-spin-button {
 .test-form-container .main-container .form-group{
     margin-bottom: 1.5rem;
 }
-.variant-form-container .main-container .form-group{
-    margin-bottom: 1rem;
+.variant-form-container .main-container .row-main{
+    margin-bottom: 2rem;
 }
 .variant-form-container .kim-image{
     margin-top: -15px;
@@ -1410,14 +1407,6 @@ input[type=number]::-webkit-outer-spin-button {
     opacity: 0;
     position: absolute;
     z-index: -1;
-}
-.main-container .kim-label{
-    cursor: pointer;
-}
-.main-container .kim-area{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 #tasks_area{
     max-width: none;
