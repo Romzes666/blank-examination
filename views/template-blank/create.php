@@ -111,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <textarea id="hint" class="form-control" rows="6"></textarea>
         </div>
     </div>
-    <button type="submit" class="btn-success mt-4 mb-2 btn-create-blank">Сохранить</button>
+    <button type="submit" class="btn-success mt-4 mb-2 btn-custom">Сохранить</button>
     <?php $form->end(); ?>
 </div>
 <?php

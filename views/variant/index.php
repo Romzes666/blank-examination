@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Тестируемые',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::button('Посмотреть', ['class' => 'btn-primary']);
+                    return Html::button('Посмотреть', ['class' => 'btn-custom btn-primary']);
                 },
             ],
             [

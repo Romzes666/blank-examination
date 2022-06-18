@@ -1,4 +1,4 @@
-<div class="intro user-profile">
+<div class="user-profile">
     <div class="container">
         <div class="intro__inner">
             <div class="d-flex justify-content-center">

@@ -1,4 +1,4 @@
-<div class="intro">
+<div class="support-page">
     <div class="supportContainer">
         <h3>Опишите свою проблему</h3>
         <form method="post" id="support-form">

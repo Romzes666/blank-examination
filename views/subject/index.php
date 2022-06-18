@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<button class="btn-primary">Посмотреть</button>', $url, [
+                        return Html::a('<button class="btn-custom btn-primary">Посмотреть</button>', $url, [
                             'title' => Yii::t('app', 'lead-view'),
                         ]);
                     },

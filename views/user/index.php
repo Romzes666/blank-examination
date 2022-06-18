@@ -74,7 +74,8 @@ $this->params['breadcrumbs']['admin'] = $this->title;
     <div class="form-group row">
         <div class="col-sm-10">
             <input type="hidden" name="idUser" id="idUser">
-            <?= Html::submitButton('Отправить', ['class' => 'btn-success .send-request', 'id' => 'send-request']) ?>
+            <?= Html::submitButton('Отправить', ['class' => 'btn-custom btn-success 
+            .send-request', 'id' => 'send-request']) ?>
         </div>
     </div>
 
@@ -101,7 +102,7 @@ $this->params['breadcrumbs']['admin'] = $this->title;
                 'label' => 'Тестирование',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::button('Назначить', ['class' => 'btn-primary modal-open', 'id' => $data->user_id]);
+                    return Html::button('Назначить', ['class' => 'btn-custom btn-primary modal-open', 'id' => $data->user_id]);
                 },
             ],
             [

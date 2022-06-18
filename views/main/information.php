@@ -1,4 +1,4 @@
-<div class="intro">
+<div class="info-page">
     <div class="intro__inner">
         <h3>Основная информация</h3>
         <p style="color: white; white-space: pre-line; font-size: 18px;">ТОГИРРО

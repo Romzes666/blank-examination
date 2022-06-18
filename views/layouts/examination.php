@@ -38,7 +38,7 @@ AppAsset::register($this);
                     echo'<li>'
                         . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                         . Html::submitButton(
-                            'Выйти', ['class' => 'btn-danger'])
+                            'Выйти', ['class' => 'btn-exit btn-danger'])
                         . Html::endForm()
                         . '</li>';
                 }
@@ -55,7 +55,7 @@ AppAsset::register($this);
     </div>
 </header>
 <main style="color: white;">
-        <div style="padding: 100px 15px 20px;" class="container">
+        <div style="padding: 100px 20px;" class="container">
             <?= Breadcrumbs::widget([
                 'homeLink' => [
                     'label' => 'Главная',
