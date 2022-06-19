@@ -9,19 +9,19 @@ $('#fill-site').on('click', function () {
 	$('#chapter-two').show();
 })
 
-var img = new Image;
+let img = new Image;
 img.onload = setup;
 img.src = "/web/upload/variant/1234/3.jpg";
 
 function setup() {
-	var canvas = document.querySelector("canvas"),
+	let canvas = document.querySelector("canvas"),
 		ctx = canvas.getContext("2d"),
 		lastPos, isDown = false;
 
-	ctx.drawImage(this, 0, 0, canvas.width, canvas.height);  // draw duck
-	ctx.lineCap = "round";                                   // make lines prettier
+	ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+	ctx.lineCap = "round";
 	ctx.lineWidth = 3;
-	ctx.globalCompositeOperation = "multiply";               // KEY MODE HERE
+	ctx.globalCompositeOperation = "multiply";
 
 	canvas.onmousedown = function(e) {
 		isDown = true;
@@ -30,7 +30,7 @@ function setup() {
 	};
 	window.onmousemove = function(e) {
 		if (!isDown) return;
-		var pos = getPos(e);
+		let pos = getPos(e);
 		ctx.beginPath();
 		ctx.moveTo(lastPos.x, lastPos.y);
 		ctx.lineTo(pos.x, pos.y);
@@ -40,7 +40,7 @@ function setup() {
 	window.onmouseup = function(e) {isDown = false};
 
 	function getPos(e) {
-		var rect = canvas.getBoundingClientRect();
+		let rect = canvas.getBoundingClientRect();
 		return {x: e.clientX - rect.left, y: e.clientY - rect.top}
 	}
 }

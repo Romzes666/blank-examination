@@ -29,7 +29,7 @@ class ExamController extends Controller
         );
     }
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new UserExamSearch();
         $dataProvider = $searchModel->searchByID($this->request->queryParams);
@@ -40,7 +40,7 @@ class ExamController extends Controller
         ]);
     }
 
-    public function actionRegistration($id_sb)
+    public function actionRegistration($id_sb): string
     {
         $variant = Variant::findOne(['id' => $id_sb]);
         $subjectBlanks = SubjectBlanks::findOne(['id_subject' => $id_sb]);
@@ -74,10 +74,12 @@ class ExamController extends Controller
 
     public function actionAnswers($id, $id_v)
     {
+        $variant = Variant::findOne(['id' => $id]);
         $subjectBlank = (new \yii\db\Query())->from('template_blank')->select(['template_blank.*'])
         ->innerJoin('subject_blanks','`template_blank`.`id_tb` = `subject_blanks`.`id_templateblank`')
         ->innerJoin('subject', '`subject`.`id` = `subject_blanks`.`id_subject`')
         ->where(['subject_blanks.id_subject' => $id])
+        ->where(['like', 'type_blank', '%ответ%', false])
         ->all();
         $result = [];
         foreach ($subjectBlank as $blank) {
@@ -87,8 +89,9 @@ class ExamController extends Controller
         }
         $inputs = BlankInputs::find()->where(['blank_id' => $result['id_tb']])->all();
         return $this->render('answers', [
-            'blank' => $result,
-            'inputs' => $inputs
+            'blank' => $variant,
+            'inputs' => $inputs,
+            'blanks' => $subjectBlank,
         ]);
     }
 }

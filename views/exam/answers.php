@@ -1,3 +1,15 @@
+<?php
+
+
+/* @var $this yii\web\View */
+/* @var $inputs app\models\BlankInputs[] */
+/* @var $blanks app\models\TemplateBlank[] */
+/* @var $blank app\models\Variant */
+$this->title = 'Завершение';
+echo '<pre>';
+print_r($blanks);
+echo '</pre>';
+?>
 <div class="slider">
     <div class="container">
         <div class="slider__inner">
@@ -16,6 +28,7 @@
         </div>
     </div>
 </div>
+<?php if(count($blanks) > 1) {?>
 <div id="type-fill" class="intro__inner">
     <h1>Выберите как вы хотите заполнить 2 часть</h1>
     <div class="form-group">
@@ -23,6 +36,16 @@
         <button id="fill-offline" class="btn btn-primary">Распечатать</button>
     </div>
 </div>
+<?php }
+    else { ?>
+        <div id="type-fill" class="intro__inner">
+            <h1>Для того чтобы завершить тестирование нажмите кнопку <span>Завершить</span></h1>
+            <div class="form-group">
+                <button id="fill-site" class="btn btn-primary">Назад</button>
+                <button id="fill-site" class="btn btn-primary">Завершить</button>
+            </div>
+        </div>
+<?php }?>
 <div id="chapter-two" class="newInn">
     <div class="blank-area">
         <div class="image-frame">
@@ -35,17 +58,17 @@
     <div class="blank-area">
         <?php
         foreach ($inputs as $input) {
-            echo "<div style='top: ".$input['input_top']."; 
+            echo "<input style='top: ".$input['input_top']."; 
             left: ".$input['input_left']."; 
             width: ".$input['input_width']."; 
             height: ".$input['input_height'].";' 
-            class='hover_div'>
+            class='hover_div'/>
                 <a class='hover_a' style='width: 200px'>
-                <i class='far fa-question-circle'></i>".$input['input_tooltip']."</a></div>";
+                <i class='far fa-question-circle'></i>".$input['input_tooltip']."</a>";
         }
         ?>
         <div class="image-frame">
-            <img src="/web/blanks/templates/<?= $blank['class_templ'] . "/" . $blank['type_test'] ."/". $blank['type_blank'] . "/" . $blank['image_name']?>">
+            <img src="/web/blanks/templates/<?=$blanks[0]['class_templ'] .'/'. $blanks[0]['type_test'] .'/'. $blanks[0]['type_blank'] . '/'. $blanks[0]['image_name']?>">
         </div>
         <a href="index.php?r=exam/test&id=<?=$_GET['id_v']?>" class="btn btn-primary">Назад</a>
         <a class="btn btn-primary continue">Продолжить</a>

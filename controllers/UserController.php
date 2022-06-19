@@ -71,7 +71,7 @@ class UserController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($user_id)
+    public function actionView($user_id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($user_id),
@@ -83,7 +83,7 @@ class UserController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate(): \yii\web\Response|string
     {
         $model = new User();
 
@@ -123,7 +123,7 @@ class UserController extends Controller
         ]);
     }
 
-    private function PostUsersData(User $model)
+    private function PostUsersData(User $model): User
     {
         $model->user_email_address = $_POST['User']['user_email_address'];
         $model->user_name = $_POST['User']['user_name'];
