@@ -57,14 +57,24 @@ echo '</pre>';
 <div id="chapter-one" class="newInn">
     <div class="blank-area">
         <?php
+        $count = 0;
         foreach ($inputs as $input) {
-            echo "<input style='top: ".$input['input_top']."; 
+            if ($input['type'] === 'answer') {
+                echo "<input style='top: ".$input['input_top']."; 
             left: ".$input['input_left']."; 
             width: ".$input['input_width']."; 
             height: ".$input['input_height'].";' 
-            class='hover_div'/>
+            class='hover_input' id='answer".$input['input_tooltip']."'/>";
+            }
+            else {
+                echo "<div style='top: ".$input['input_top']."; 
+            left: ".$input['input_left']."; 
+            width: ".$input['input_width']."; 
+            height: ".$input['input_height'].";' 
+            class='hover_div'>
                 <a class='hover_a' style='width: 200px'>
-                <i class='far fa-question-circle'></i>".$input['input_tooltip']."</a>";
+                <i class='far fa-question-circle'></i>".$input['input_tooltip']."</a></div>";
+            }
         }
         ?>
         <div class="image-frame">

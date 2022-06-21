@@ -25,17 +25,25 @@
     <div class="blank-area">
         <?php
         foreach ($inputs as $input) {
-            echo "<div style='top: ".$input['input_top']."; 
+            if ($input['type'] === 'answer') {
+                echo "<input style='top: ".$input['input_top']."; 
+            left: ".$input['input_left']."; 
+            width: ".$input['input_width']."; 
+            height: ".$input['input_height'].";' 
+            class='hover_input' id='answer".$input['input_tooltip']."'/>";
+            } elseif ($input['type'] === 'help') {
+                echo "<div style='top: ".$input['input_top']."; 
             left: ".$input['input_left']."; 
             width: ".$input['input_width']."; 
             height: ".$input['input_height'].";' 
             class='hover_div'>
                 <a class='hover_a' style='width: 200px'>
                 <i class='far fa-question-circle'></i>".$input['input_tooltip']."</a></div>";
+            }
         }
         ?>
         <div class="image-frame">
-            <img src="/web/upload/variant/<?= $blank->number . "/1.jpg"?>">
+            <img src="<?= $path ?>">
         </div>
     </div>
 </div>

@@ -117,12 +117,21 @@ $('input[id=heightRange]').change(function () {
 });
 $('input[id=check_tooltip]').change(function () {
     $('input[id=check_sign]').prop('checked', false);
+    $('input[id=check_answer]').prop('checked', false);
+    if (activeInput !== '') {
+        $('#' + activeInput).attr('value', this.value);
+    }
+});
+$('input[id=check_answer]').change(function () {
+    $('input[id=check_sign]').prop('checked', false);
+    $('input[id=check_tooltip]').prop('checked', false);
     if (activeInput !== '') {
         $('#' + activeInput).attr('value', this.value);
     }
 });
 $('input[id=check_sign]').change(function () {
     $('input[id=check_tooltip]').prop('checked', false);
+    $('input[id=check_answer]').prop('checked', false);
     if (activeInput !== '') {
         $('#' + activeInput).attr('value', this.value);
     }
@@ -168,9 +177,16 @@ $(document).on('click', '.frame', function () {
     if ($(this).attr('value') === 'help') {
         $('input[id=check_tooltip]').prop('checked', true);
         $('input[id=check_sign]').prop('checked', false);
+        $('input[id=check_answer]').prop('checked', false);
     }
     if ($(this).attr('value') === 'caption') {
         $('input[id=check_sign]').prop('checked', true);
+        $('input[id=check_tooltip]').prop('checked', false);
+        $('input[id=check_answer]').prop('checked', false);
+    }
+    if ($(this).attr('value') === 'answer') {
+        $('input[id=check_answer]').prop('checked', true);
+        $('input[id=check_sign]').prop('checked', false);
         $('input[id=check_tooltip]').prop('checked', false);
     }
 });

@@ -861,6 +861,27 @@ h4 {
     border: 3px solid #0000cc;
     background-color: rgba(85, 13, 255, 0.3);
 }
+.hover_input:hover{
+    border: 3px solid #0000cc;
+    background-color: rgba(85, 13, 255, 0.3);
+}
+.hover_input{
+    display: flex;
+    padding-left: 7px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    letter-spacing: 17px;
+    font-size: 20px;
+    position: absolute;
+    z-index: 999;
+    width: 300px;
+    height: 30px;
+    cursor: grab;
+    border: rgba(0,0,0,0);
+    border-radius: 8px;
+    background-color: rgba(145, 132, 11, 0.3);
+}
 .hover_div{
     display: flex;
     justify-content: center;

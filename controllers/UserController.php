@@ -2,10 +2,15 @@
 
 namespace app\controllers;
 
+use app\helpers\BlankHelper;
+use app\models\BlankInputs;
 use app\models\Subject;
+use app\models\SubjectBlanks;
+use app\models\TemplateBlank;
 use app\models\User;
 use app\models\UserExam;
 use app\models\UserSearch;
+use app\models\Variant;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -47,13 +52,31 @@ class UserController extends Controller
             $userExam->id_user = $_POST['idUser'];
             $userExam->id_variant = $_POST['variant'];
             if ($userExam->save(false)) {
+                $variant = Variant::findOne(['id' => $userExam->id_variant]);
+                $subjectBlanks = SubjectBlanks::find()
+                    ->innerJoin('template_blank', 'template_blank.id_tb = subject_blanks.id_templateblank')
+                    ->where(['id_subject' => $variant->id_subject, 'type_blank' => 'Бланк регистрации'])
+                    ->asArray()
+                    ->all();
+                $id_tb = $subjectBlanks[0]['id_templateblank'];
+                $inputs = BlankInputs::find()
+                    ->where(['blank_id' => $id_tb])
+                    ->asArray()
+                    ->all();
+                $result = BlankHelper::ParseValues($inputs);
+                $template = TemplateBlank::findOne(['id_tb' => $id_tb]);
+                $path = $_SERVER['DOCUMENT_ROOT'].'/web/blanks/templates/'.$template->class_templ.'/'.$template->type_test.'/'.$template->type_blank.'/'.$template->image_name;
+                $subject = Subject::findOne(['id' => $variant->id_subject]);
+                $params['code'] = $subject->code;
+                $params['subject'] = $subject->name;
+                $params['blank_name'] = $template->type_blank;
+                BlankHelper::InsertInBlank($result, $path, $params);
                 return ['message' => 'Тестирование назначено!'];
             }
             else {
                 return ['message' => 'Произошла ошибка'];
             }
         }
-
         $searchModel = new UserSearch();
         $subjects = Subject::find()->asArray()->all();
         $dataProvider = $searchModel->search($this->request->queryParams);

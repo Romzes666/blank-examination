@@ -12,6 +12,7 @@ use Yii;
  * @property int $class
  * @property string $type
  * @property int $count_task
+ * @property string $code
  *
  * @property SubjectBlanks[] $subjectBlanks
  * @property Task[] $tasks
@@ -33,10 +34,10 @@ class Subject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'class', 'type', 'count_task'], 'required'],
-            ['name', 'unique', 'targetAttribute' => ['name', 'type']],
+            [['name', 'class', 'type', 'count_task', 'code'], 'required'],
             [['class', 'count_task'], 'integer'],
             [['name', 'type'], 'string', 'max' => 50],
+            [['code'], 'string', 'max' => 3],
         ];
     }
 
@@ -47,10 +48,11 @@ class Subject extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название',
-            'class' => 'Класс',
-            'type' => 'Тип тестирования',
-            'count_task' => 'Количество заданий',
+            'name' => 'Name',
+            'class' => 'Class',
+            'type' => 'Type',
+            'count_task' => 'Count Task',
+            'code' => 'Code',
         ];
     }
 

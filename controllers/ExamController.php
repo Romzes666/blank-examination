@@ -4,9 +4,12 @@
 namespace app\controllers;
 
 
+use app\helpers\BlankHelper;
 use app\models\BlankInputs;
+use app\models\Subject;
 use app\models\SubjectBlanks;
 use app\models\TemplateBlank;
+use app\models\UserExam;
 use app\models\UserExamSearch;
 use app\models\Variant;
 use yii\filters\VerbFilter;
@@ -43,12 +46,27 @@ class ExamController extends Controller
     public function actionRegistration($id_sb): string
     {
         $variant = Variant::findOne(['id' => $id_sb]);
-        $subjectBlanks = SubjectBlanks::findOne(['id_subject' => $id_sb]);
-        $id_tb = $subjectBlanks->id_templateblank;
-        $inputs = BlankInputs::find()->where(['blank_id' => $id_tb])->all();
+        $subjectBlanks = SubjectBlanks::find()->innerJoin('template_blank', 'template_blank.id_tb = subject_blanks.id_templateblank')
+            ->where(['id_subject' => $variant->id_subject, 'type_blank' => 'Бланк регистрации'])->asArray()->all();
+        $id_tb = $subjectBlanks[0]['id_templateblank'];
+        $inputs = BlankInputs::find()->where(['blank_id' => $id_tb])->asArray()->all();
+        $result = BlankHelper::ParseValues($inputs);
+        $template = TemplateBlank::findOne(['id_tb' => $id_tb]);
+        $subject = Subject::findOne(['id' => $variant->id_subject]);
+        $params['code'] = $subject->code;
+        $params['subject'] = $subject->name;
+        $params['user_id'] = \Yii::$app->user->id;
+        $params['variant_id'] = $variant->id;
+        $params['blank_name'] = $template->type_blank;
+        $exam = UserExam::findOne(['id_user' => $params['user_id'], 'id_variant' => $params['variant_id']]);
+        $params['id_exam'] = $exam->id;
+        $path = $_SERVER['DOCUMENT_ROOT'].'/web/blanks/templates/'.$template->class_templ.'/'.$template->type_test.'/'.$template->type_blank.'/'.$template->image_name;
+        BlankHelper::InsertInBlank($result, $path, $params);
+        $path = '/web/blanks/'.$params['user_id'].'/'.$params['variant_id'].'/'.$params['blank_name'].'.jpg';
         return $this->render('registration', [
             'blank' => $variant,
             'inputs' => $inputs,
+            'path' => $path,
         ]);
     }
 
