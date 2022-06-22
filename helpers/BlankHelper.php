@@ -61,7 +61,10 @@ class BlankHelper
                     $variantBlank->prefix = $code;
                     $variantBlank->save(false);
                 } else {
-                    $variantBlank = VariantBlank::findOne(['name' => $params['blank_name']. '.jpg']);
+                    $variantBlank = VariantBlank::findOne([
+                        'name' => $params['blank_name']. '.jpg',
+                        'id_exam' => $params['id_exam']
+                    ]);
                     $code = $variantBlank->prefix;
                 }
                 $fontSize = 72;

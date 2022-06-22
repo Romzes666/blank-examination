@@ -48,7 +48,7 @@
     </div>
 </div>
 </br>
-<a href="index.php?r=exam/test&id=<?=$_GET['id_sb']?>" class="btn btn-primary">Продолжить</a>
+<a href="index.php?r=exam/test&id=<?=$blank->id?>" class="btn btn-primary">Продолжить</a>
 
 <?php
 $this->registerJsFile(

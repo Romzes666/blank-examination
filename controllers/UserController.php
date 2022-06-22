@@ -48,33 +48,67 @@ class UserController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            $userExam = new UserExam();
-            $userExam->id_user = $_POST['idUser'];
-            $userExam->id_variant = $_POST['variant'];
-            if ($userExam->save(false)) {
-                $variant = Variant::findOne(['id' => $userExam->id_variant]);
-                $subjectBlanks = SubjectBlanks::find()
-                    ->innerJoin('template_blank', 'template_blank.id_tb = subject_blanks.id_templateblank')
-                    ->where(['id_subject' => $variant->id_subject, 'type_blank' => 'Бланк регистрации'])
-                    ->asArray()
-                    ->all();
-                $id_tb = $subjectBlanks[0]['id_templateblank'];
-                $inputs = BlankInputs::find()
-                    ->where(['blank_id' => $id_tb])
-                    ->asArray()
-                    ->all();
-                $result = BlankHelper::ParseValues($inputs);
-                $template = TemplateBlank::findOne(['id_tb' => $id_tb]);
-                $path = $_SERVER['DOCUMENT_ROOT'].'/web/blanks/templates/'.$template->class_templ.'/'.$template->type_test.'/'.$template->type_blank.'/'.$template->image_name;
-                $subject = Subject::findOne(['id' => $variant->id_subject]);
-                $params['code'] = $subject->code;
-                $params['subject'] = $subject->name;
-                $params['blank_name'] = $template->type_blank;
-                BlankHelper::InsertInBlank($result, $path, $params);
-                return ['message' => 'Тестирование назначено!'];
+            if ($_POST['action'] === 'findVariant') {
+                $template = Subject::findOne([
+                    'name' => $_POST['subject'],
+                    'type' => $_POST['typeTest'],
+                ]);
+                if (is_null($template)) {
+                    $output = [
+                        'success' => false,
+                        'message' => 'Предмет по таким параметрам не найден....'
+                    ];
+                    return $output;
+                } else {
+                    $variant = Variant::findOne(['id_subject' => $template->id]);
+                    if (is_null($variant)) {
+                        $output = [
+                            'success' => false,
+                            'message' => 'Вариант по таким параметрам не найден....'
+                        ];
+                        return $output;
+                    } else {
+                        $output = [
+                            'success' => true,
+                            'message' => 'Вариант найден....',
+                            'numberVariant' => $variant->number,
+                            'idVariant' => $variant->id,
+                        ];
+                        return $output;
+                    }
+                }
             }
-            else {
-                return ['message' => 'Произошла ошибка'];
+            if ($_POST['action'] === 'addTest') {
+                $userExam = new UserExam();
+                $userExam->id_user = $_POST['idUser'];
+                $userExam->id_variant = $_POST['variant'];
+                if ($userExam->save(false)) {
+                    $variant = Variant::findOne(['id' => $userExam->id_variant]);
+                    $subjectBlanks = SubjectBlanks::find()
+                        ->innerJoin('template_blank', 'template_blank.id_tb = subject_blanks.id_templateblank')
+                        ->where(['id_subject' => $variant->id_subject])
+                        ->asArray()
+                        ->all();
+                    foreach ($subjectBlanks as $sB) {
+                        $id_tb = $sB['id_templateblank'];
+                        $inputs = BlankInputs::find()->where(['blank_id' => $id_tb])->asArray()->all();
+                        $result = BlankHelper::ParseValues($inputs);
+                        $template = TemplateBlank::findOne(['id_tb' => $id_tb]);
+                        $subject = Subject::findOne(['id' => $variant->id_subject]);
+                        $params['code'] = $subject->code;
+                        $params['subject'] = $subject->name;
+                        $params['user_id'] = $_POST['idUser'];
+                        $params['variant_id'] = $variant->id;
+                        $params['blank_name'] = $template->type_blank;
+                        $params['id_exam'] = $userExam->id;
+                        $path = $_SERVER['DOCUMENT_ROOT'].'/web/blanks/templates/'.$template->class_templ.'/'.$template->type_test.'/'.$template->type_blank.'/'.$template->image_name;
+                        BlankHelper::InsertInBlank($result, $path, $params);
+                    }
+                    return ['message' => 'Тестирование назначено!'];
+                }
+                else {
+                    return ['message' => 'Произошла ошибка'];
+                }
             }
         }
         $searchModel = new UserSearch();

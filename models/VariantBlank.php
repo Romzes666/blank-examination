@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $id_exam
- * @property int $prefix
+ * @property string $prefix
  * @property string $name
  *
  * @property UserExam $exam
@@ -34,7 +34,7 @@ class VariantBlank extends \yii\db\ActiveRecord
             [['id_exam'], 'integer'],
             [['prefix'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 50],
-            [['id_exam'], 'exist', 'skipOnError' => true, 'targetClass' => UserExam::class, 'targetAttribute' => ['id_exam' => 'id']],
+            [['id_exam'], 'exist', 'skipOnError' => true, 'targetClass' => UserExam::className(), 'targetAttribute' => ['id_exam' => 'id']],
         ];
     }
 
@@ -58,6 +58,6 @@ class VariantBlank extends \yii\db\ActiveRecord
      */
     public function getExam()
     {
-        return $this->hasOne(UserExam::class, ['id' => 'id_exam']);
+        return $this->hasOne(UserExam::className(), ['id' => 'id_exam']);
     }
 }

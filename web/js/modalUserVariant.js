@@ -14,7 +14,7 @@ $('#save-form').submit(function (event) {
 		url: url,
 		type: 'post',
 		dataType: 'json',
-		data: {idUser: idUser, variant: variant},
+		data: {action: 'addTest',idUser: idUser, variant: variant},
 		beforeSend:function()
 		{
 			$('#send-request').attr('disabled', true);
@@ -25,3 +25,28 @@ $('#save-form').submit(function (event) {
 		}
 	})
 })
+$('#type-test').on('change', function () {
+	ajaxSend();
+});
+$('#subject').on('change', function () {
+	if ($('#type-test').val() !== '') {
+		ajaxSend();
+	}
+})
+function ajaxSend() {
+	let typeTest = $('#type-test').val();
+	let subject = $('#subject').val();
+	$.ajax({
+		url: 'index.php?r=user/index',
+		type: 'post',
+		dataType: 'json',
+		data: {typeTest: typeTest, subject: subject, action: 'findVariant'},
+		success:function(data)
+		{
+			if (data.success) {
+				$('#variant').html('');
+				$("#variant").append(new Option(data.numberVariant, data.idVariant));
+			}
+		}
+	})
+}

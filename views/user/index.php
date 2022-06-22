@@ -57,7 +57,7 @@ $this->params['breadcrumbs']['admin'] = $this->title;
                 <option class="option-sub" value="Информатика">Информатика</option>
                 <option class="option-sub" value="Биология">Биология</option>
                 <option class="option-sub" value="История">История</option>
-                <option class="option-sub" value="Георграфия">Георграфия</option>
+                <option class="option-sub" value="География">География</option>
                 <option class="option-sub" value="Английский язык">Английский язык</option>
                 <option class="option-sub" value="Обществознание">Обществознание</option>
                 <option class="option-sub" value="Литература">Литература</option>
@@ -68,7 +68,9 @@ $this->params['breadcrumbs']['admin'] = $this->title;
     <div class="form-group row">
         <label for="phone" class="col-sm-2 col-form-label">Вариант</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="variant" id="variant" placeholder="Вариант" required>
+            <select name="variant" id="variant" class="black-select form-control text-center">
+
+            </select>
         </div>
     </div>
     <div class="form-group row">

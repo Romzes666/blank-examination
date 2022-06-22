@@ -6,9 +6,6 @@
 /* @var $blanks app\models\TemplateBlank[] */
 /* @var $blank app\models\Variant */
 $this->title = 'Завершение';
-echo '<pre>';
-print_r($blanks);
-echo '</pre>';
 ?>
 <div class="slider">
     <div class="container">
