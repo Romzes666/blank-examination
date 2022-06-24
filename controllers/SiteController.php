@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\RegisterForm;
 use app\models\ContactForm;
 use app\models\EntryForm;
 
@@ -21,7 +22,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'about', 'index'],
+                'only' => ['logout', 'index'],
                 'rules' => [
                     [
                         'actions' => ['logout', 'about'],
@@ -90,6 +91,23 @@ class SiteController extends Controller
     }
 
     /**
+     * Register action.
+     *
+     * @return Response|string
+     */
+    public function actionRegister()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new RegisterForm();
+
+        return $this->render('register', [
+          'model' => $model,
+        ]);
+    }
+
+    /**
      * Login action.
      *
      * @return Response|string
@@ -133,6 +151,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return string
+     */
+    public function actionContact()
+    {
+        return $this->render('contact');
     }
 
     public function actionSay()

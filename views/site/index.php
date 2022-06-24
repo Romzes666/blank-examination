@@ -1,9 +1,11 @@
 <?php
 
 /** @var yii\web\View $this */
+/** @var app\models\LoginForm $model */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = 'Вход';
 ?>
@@ -50,7 +52,9 @@ $this->title = 'Вход';
                             </div>
                           <?php ActiveForm::end(); ?>
                             <div align="center">
-                                <a href="../register/index.php" style="color: #fde19a">Регистрация</a>
+                                <?php
+                                    echo '<a style="color: #fde19a" href="'.Url::to(['site/register']).'"> Регистрация</a>';
+                                ?>
                             </div>
                         </div>
                     </div>

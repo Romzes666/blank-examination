@@ -1,18 +1,31 @@
 <?php
+    use yii\bootstrap4\Html;
 
-/** @var yii\web\View $this */
-
-use yii\helpers\Html;
-
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = 'О нас';
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
-
-    <code><?= __FILE__ ?></code>
+<div class="about-page">
+    <div class="about-title">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
+    <div class="intro__inner">
+        <div class="about-info">
+            <p><span>ТОГИРРО</span> расшифровывается как «Тюменский областной государственный
+                институт развития регионального образования».</p>
+            <p><span>Цель ТОГИРРО</span> – определение стратегии развития образовательной
+                системы области и ее научно-методическое обеспечение на основе мониторинговых исследований.</p>
+        </div>
+        <div class="about-activity">
+            <p style="margin-bottom: 0.5rem;">Деятельность института:</p>
+            <ol class="activity-list">
+                <li>Информационно-аналитическая деятельность.</li>
+                <li>Проектно-прогностическая деятельность, обеспечение стратегического развития отрасли.</li>
+                <li>Подготовка и переподготовка педагогических и управленческих кадров, специалистов органов
+                    управления образованием,
+                    специалистов финансово-экономических служб образовательных учреждений и организаций,
+                    научно-педагогических работников.
+                </li>
+                <li>Организационно-педагогическая деятельность.</li>
+            </ol>
+        </div>
+    </div>
 </div>

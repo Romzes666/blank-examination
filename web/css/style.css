@@ -27,7 +27,10 @@ main{
 .change-pass,
 .support-page,
 .info-page,
-.login-page{
+.login-page,
+.register-page,
+.about-page,
+.contact-page{
     min-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -53,6 +56,11 @@ main{
     transition: all .3s;
 }
 /*About*/
+.about-title h1,
+.contact-title h1{
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
 .about-info span{
     color: #DFF0D8;
     font-weight: bold;
@@ -175,10 +183,11 @@ textarea.parsley-error {
     justify-content: center;
     align-items: center;
 }
-.container-login{
+.container-login,
+.container-register{
     width: 400px;
     max-width: 600px;
-    min-height: 500px;
+    min-height: 450px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -190,6 +199,12 @@ textarea.parsley-error {
     border: 1px solid rgba(255,255,255,0.5);
     border-right: 1px solid rgba(255,255,255,0.2);
     border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.container-register{
+    min-height: 605px;
+}
+.container-register .help-block{
+    color: #dc3545;
 }
 .gradientBG{
     background: #141824;

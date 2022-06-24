@@ -43,11 +43,10 @@ AppAsset::register($this);
                         . '</li>';
                 }
                 else {
-                    echo '<a class="nav__link" href="/user/register/" name="registr" id="registr">Регистрация</a>';
-                    echo '<a class="nav__link" href="/user/login/" name="log" id="log">Войти</a>';
-                    echo '<a class="nav__link" href="/user/news/" name="news" id="news">Новости</a>
-                          <a class="nav__link" href="/user/contacts/" name="contacts" id="contacts">Контакты</a>
-                          <a class="nav__link" href="/user/about/" name="about" id="about">О нас</a>';
+                    echo '<a class="nav__link" href="'.Url::to(['site/register']).'" id="register">Регистрация</a>';
+                    echo '<a class="nav__link" href="'.Url::to(['site/index']).'"  id="login">Войти</a>';
+                    echo '<a class="nav__link" href="'.Url::to(['site/contact']).'" id="contact">Контакты</a>';
+                    echo '<a class="nav__link" href="'.Url::to(['site/about']).'" id="about">О нас</a>';
                 }
                 ?>
             </nav>
