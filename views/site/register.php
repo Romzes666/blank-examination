@@ -31,23 +31,23 @@ $this->title = 'Регистрация';
                             }
                             ?>
                             <span id="message"></span>
-                            <?php $form = ActiveForm::begin(); ?>
+                            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
                             <div class="form-group" style="text-align: left">
-                                <?= $form->field($model, 'firstName')->label('Введите имя') ?>
+                                <?= $form->field($model, 'userFirstName')->label('Введите имя') ?>
                             </div>
                             <div class="form-group" style="text-align: left">
-                                <?= $form->field($model, 'lastName')->label('Введите фамилию') ?>
+                                <?= $form->field($model, 'userLastName')->label('Введите фамилию') ?>
                             </div>
                             <div class="form-group" style="text-align: left">
-                                <?= $form->field($model, 'email')->input('email')->
+                                <?= $form->field($model, 'userEmail')->input('email')->
                                 label('Введите email') ?>
                             </div>
                             <div class="form-group" style="text-align: left">
-                                <?= $form->field($model, 'password', )->input('password')->
+                                <?= $form->field($model, 'userPassword')->input('password')->
                                 label('Создайте пароль') ?>
                             </div>
                             <div class="form-group" style="text-align: left">
-                                <?= $form->field($model, 'image', )->input('file',
+                                <?= $form->field($model, 'userImage')->input('file',
                                   ['class' => 'image-reg'])->label('Выберите изображение профиля:') ?>
                             </div>
                             <div class="form-group">

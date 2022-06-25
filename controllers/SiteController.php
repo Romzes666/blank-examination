@@ -7,10 +7,10 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 use app\models\LoginForm;
 use app\models\RegisterForm;
-use app\models\ContactForm;
-use app\models\EntryForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -21,7 +21,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout', 'index'],
                 'rules' => [
                     [
@@ -37,7 +37,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -101,7 +101,29 @@ class SiteController extends Controller
             return $this->goHome();
         }
         $model = new RegisterForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user = new User();
+            $user->user_name = $model->userFirstName;
+            $user->last_name = $model->userLastName;
+            $user->user_email_address = $model->userEmail;
+            $user->user_password = md5($model->userPassword);
+            $image = UploadedFile::getInstance($model, 'userImage');
+            if (!is_null($image)) {
+                $new_name = md5($image->baseName) .'.'.$image->extension;
+                $path = \Yii::$app->basePath . '/web/upload/images/'. $new_name;
+                $image->saveAs($path);
+                $user->user_image = $new_name;
+            }
+            else {
+                $user->user_image = 'default.jpg';
+            }
+            $user->user_verfication_code = '123';
 
+            if ($user->save()) {
+                return $this->goHome();
+            }
+        }
+        $model->userPassword = '';
         return $this->render('register', [
           'model' => $model,
         ]);
@@ -167,4 +189,5 @@ class SiteController extends Controller
     {
         return $this->render('say');
     }
+
 }

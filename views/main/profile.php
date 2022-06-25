@@ -28,9 +28,9 @@
                                     <label for="user_image">
                                         <input type="file" name="user_image" id="user_image" accept="image/*"/>
                                         <div class="img-thumbnail">
-                                            <i style="font-size: 60px;" class="fas fa-solid fa-file-image"></i>
-                                            <img style="display: none" id="user-profile-img" s
-                                                 rc="/users_images/<?= Yii::$app->user->identity->user_image ?>" alt=""/>
+                                            <img  id="user-profile-img"
+                                                 src="/web/upload/images/<?= Yii::$app->user->identity->user_image ?>" alt=""
+                                            />
                                         </div>
                                     </label>
                                 </div>

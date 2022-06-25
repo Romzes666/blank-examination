@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user_table".
@@ -22,7 +23,7 @@ use Yii;
  *
  * @property ExamUsers[] $examUsers
  */
-class User extends \yii\db\ActiveRecord
+class User extends ActiveRecord
 {
 
     const ROLE_USER = 'user';
@@ -31,7 +32,7 @@ class User extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName() : string
+    public static function tableName()
     {
         return 'user_table';
     }
@@ -42,13 +43,13 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_email_address', 'user_password', 'user_name', 'last_name', 'user_image'], 'required'],
-            [['user_email_verified', 'role'], 'string'],
-            ['user_email_address', 'unique'],
-            [['user_email_address'], 'string', 'max' => 250],
-            [['user_password', 'user_name', 'user_image'], 'string', 'max' => 150],
-            [['user_verfication_code'], 'string', 'max' => 100],
-            [['last_name', 'auth_key', 'access_token'], 'string', 'max' => 50],
+              [['user_email_address', 'user_password', 'user_name', 'last_name'], 'required'],
+              [['user_email_verified', 'role'], 'string'],
+              [['user_email_address'], 'string', 'max' => 250],
+              ['user_email_address', 'unique'],
+              [['user_password', 'user_name', 'user_image'], 'string', 'max' => 150],
+              [['user_verfication_code'], 'string', 'max' => 100],
+              [['last_name', 'auth_key', 'access_token'], 'string', 'max' => 50],
         ];
     }
 

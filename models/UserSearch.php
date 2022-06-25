@@ -18,7 +18,8 @@ class UserSearch extends User
     {
         return [
             [['user_id'], 'integer'],
-            [['user_email_address', 'user_password', 'user_verfication_code', 'user_name', 'last_name', 'user_image', 'user_email_verified', 'auth_key', 'access_token', 'role'], 'safe'],
+            [['user_email_address', 'user_password', 'user_verfication_code', 'user_name', 'last_name',
+              'user_image', 'user_email_verified', 'auth_key', 'access_token', 'role'], 'safe'],
         ];
     }
 

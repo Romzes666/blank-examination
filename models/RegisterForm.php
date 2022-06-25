@@ -14,26 +14,37 @@ use yii\base\Model;
 
 class RegisterForm extends Model
 {
-    public $firstName;
-    public $lastName;
-    public $email;
-    public $password;
-    public $image;
+    public $userFirstName;
+    public $userLastName;
+    public $userEmail;
+    public $userPassword;
+    public $userImage;
 
     public function rules()
     {
         return [
             // firstName, lastName, mail and password are both required
-            [['email', 'firstName', 'lastName', 'password'], 'required'],
+            [['userEmail', 'userFirstName', 'userLastName', 'userPassword'], 'required'],
+            ['userEmail', 'filter', 'filter' => 'trim'],
+            ['userEmail', 'email'],
+            ['userEmail', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'user_email_address',
+              'message' => 'Такая почта уже зарегестрирована.'],
+            [['userFirstName'], 'string', 'min' => 2, 'max' => 50],
+            [['userLastName'], 'string',  'max' => 50],
+            [['userPassword'], 'string', 'min' => 6],
+            [['userImage'], 'file', 'extensions' => ['png', 'jpg']],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'firstName' => 'Имя',
-            'lastName' => 'Фамилия',
-            'password' => 'Пароль',
+            'userFirstName' => 'Имя',
+            'userLastName' => 'Фамилия',
+            'userPassword' => 'Пароль',
+            'userEmail' => 'Email',
+            'userImage' => 'Изображение',
         ];
     }
+
 }
