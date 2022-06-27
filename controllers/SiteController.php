@@ -2,15 +2,14 @@
 
 namespace app\controllers;
 
+use app\helpers\RegisterHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 use app\models\LoginForm;
 use app\models\RegisterForm;
-use app\models\User;
 
 class SiteController extends Controller
 {
@@ -102,31 +101,32 @@ class SiteController extends Controller
         }
         $model = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user = new User();
-            $user->user_name = $model->userFirstName;
-            $user->last_name = $model->userLastName;
-            $user->user_email_address = $model->userEmail;
-            $user->user_password = md5($model->userPassword);
-            $image = UploadedFile::getInstance($model, 'userImage');
-            if (!is_null($image)) {
-                $new_name = md5($image->baseName) .'.'.$image->extension;
-                $path = \Yii::$app->basePath . '/web/upload/images/'. $new_name;
-                $image->saveAs($path);
-                $user->user_image = $new_name;
-            }
-            else {
-                $user->user_image = 'default.jpg';
-            }
-            $user->user_verfication_code = '123';
-
-            if ($user->save()) {
-                return $this->goHome();
-            }
+            $registerHelper = new RegisterHelper();
+            $user = $registerHelper->register($model);
+            $registerHelper->sentEmailConfirm($user);
+            Yii::$app->session->setFlash('success', 'Почти готово! Теперь порверьте вашу почту.');
+            return $this->goHome();
         }
         $model->userPassword = '';
         return $this->render('register', [
           'model' => $model,
         ]);
+    }
+
+
+    public function actionRegisterConfirm($token)
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $registerHelper = new RegisterHelper();
+        try {
+            $registerHelper->confirmation($token);
+        } catch (\Exception $e) {
+            Yii::$app->errorHandler->logException($e);
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+        return $this->render('..\main\index');
     }
 
     /**
@@ -142,9 +142,16 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->render('main', [
-                'model' => $model
-            ]);
+            try{
+                if($model->login()){
+                    return $this->render('main', [
+                      'model' => $model
+                    ]);
+                }
+            } catch (\DomainException $e){
+                Yii::$app->session->setFlash('error', $e->getMessage());
+                return $this->goHome();
+            }
         }
 
         $model->password = '';

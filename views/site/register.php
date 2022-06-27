@@ -21,17 +21,7 @@ $this->title = 'Регистрация';
                     <div class="intro__inner">
                         <div class="intro__title mt-2"><h1>Регистрация</h1></div>
                         <div class="container">
-                            <?php
-                            if(isset($_GET['verified']))
-                            {
-                                echo '
-                                <div class="alert alert-success">
-                                Почта верефицирована, теперь можно войти
-                                </div>';
-                            }
-                            ?>
-                            <span id="message"></span>
-                            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+                            <?php $form = ActiveForm::begin(['options' => ['id' => 'register_form', 'enctype' => 'multipart/form-data']]); ?>
                             <div class="form-group" style="text-align: left">
                                 <?= $form->field($model, 'userFirstName')->label('Введите имя') ?>
                             </div>

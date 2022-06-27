@@ -29,6 +29,8 @@ class User extends ActiveRecord
     const ROLE_USER = 'user';
     const ROLE_EXPERT = 'expert';
     const ROLE_ADMIN = 'admin';
+    const STATUS_WAIT = 'no';
+    const STATUS_ACTIVE = 'yes';
     /**
      * {@inheritdoc}
      */
@@ -43,6 +45,7 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
+              ['user_email_verified', 'in', 'range' => [self::STATUS_WAIT, self::STATUS_ACTIVE]],
               [['user_email_address', 'user_password', 'user_name', 'last_name'], 'required'],
               [['user_email_verified', 'role'], 'string'],
               [['user_email_address'], 'string', 'max' => 250],
@@ -92,7 +95,6 @@ class User extends ActiveRecord
             self::ROLE_EXPERT => Yii::t('app', 'Expert'),
         ];
     }
-
     /**
      * Название роли
      * @param int $id

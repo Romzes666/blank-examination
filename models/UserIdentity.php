@@ -3,8 +3,9 @@
 namespace app\models;
 
 use JetBrains\PhpStorm\Pure;
+use yii\web\IdentityInterface;
 
-class UserIdentity extends User implements \yii\web\IdentityInterface
+class UserIdentity extends User implements IdentityInterface
 {
     /**
      * {@inheritdoc}
