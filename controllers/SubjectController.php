@@ -96,6 +96,7 @@ class SubjectController extends Controller
             $subject->name = $_POST['Subject']['name'];
             $subject->class = $_POST['Subject']['class'];
             $subject->type = $_POST['Subject']['type'];
+            $subject->code = $_POST['Subject']['code'];
             $subject->count_task = $_POST['Subject']['count_task'];
             if($subject->save()){
                 $model_id = $subject->id;

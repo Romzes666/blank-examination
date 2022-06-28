@@ -29,6 +29,7 @@ use yii\widgets\ActiveForm;
     </datalist>
 
     <?= $form->field($model, 'class')->textInput() ?>
+    <?= $form->field($model, 'code')->textInput() ?>
 
     <?= $form->field($model, 'type')->textInput(['maxlength' => true, 'list' => 'types']) ?>
     <datalist id="types">

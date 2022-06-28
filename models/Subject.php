@@ -48,11 +48,11 @@ class Subject extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'class' => 'Class',
-            'type' => 'Type',
-            'count_task' => 'Count Task',
-            'code' => 'Code',
+            'name' => 'Название',
+            'class' => 'Класс',
+            'type' => 'Тип',
+            'count_task' => 'Количество заданий',
+            'code' => 'Код',
         ];
     }
 
