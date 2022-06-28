@@ -32,11 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => 'Тестирование',
+                'header' => 'Действие',
                 'template' => '{view}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<button class="btn-primary">Пройти</button>', $url, [
+                        return Html::a('<button class="btn-custom btn-primary">Пройти</button>', $url, [
                             'title' => Yii::t('app', 'lead-view'),
                         ]);
                     },
@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => ActionColumn::class,
+                'header' => 'Результаты',
                 'template' => '{view}{update}',
                 'urlCreator' => function ($action, UserExam $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);

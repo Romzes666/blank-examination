@@ -1,3 +1,6 @@
+<?php
+$this->title = 'Панель администратора';
+?>
 <div class="container-main-menu">
     <div class="main-menu" id="menu">
         <title>Главное меню</title>

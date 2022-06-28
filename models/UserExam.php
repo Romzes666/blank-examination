@@ -46,9 +46,9 @@ class UserExam extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_variant' => 'Id Variant',
-            'id_user' => 'Id User',
-            'status' => 'Status',
+            'id_variant' => 'Вариант',
+            'id_user' => 'Пользователь',
+            'status' => 'Статус',
         ];
     }
 

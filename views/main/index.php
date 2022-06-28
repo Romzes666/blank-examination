@@ -1,3 +1,6 @@
+<?php
+$this->title = 'Главная';
+?>
 <div class="container-main-menu">
     <div class="main-menu" id="menu">
         <title>Главное меню</title>

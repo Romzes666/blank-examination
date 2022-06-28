@@ -1,6 +1,13 @@
-<div class="info-page">
+<?php
+use yii\bootstrap4\Html;
+
+$this->title = 'Основная информация';
+?>
+<div class="contact-page">
+    <div class="contact-title">
+        <h3><?= Html::encode($this->title) ?></h3>
+    </div>
     <div class="intro__inner">
-        <h3>Основная информация</h3>
         <p style="color: white; white-space: pre-line; font-size: 18px;">ТОГИРРО
             г.Тюмень
             ул. Советская 56, 625000

@@ -50,7 +50,7 @@ class Subject extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Название',
             'class' => 'Класс',
-            'type' => 'Тип',
+            'type' => 'Тип тестирования',
             'count_task' => 'Количество заданий',
             'code' => 'Код',
         ];
