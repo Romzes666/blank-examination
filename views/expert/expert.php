@@ -130,7 +130,7 @@ $this->title = 'Проверка работы';
 
         <div class="expert-blank-area mt-3">
             <div class="expert-blank-inner">
-                <img src="list.jpg" alt="#" />
+                <img src="" alt="#" />
             </div>
         </div>
         <div class="expert-buttons-area save-button mt-3">

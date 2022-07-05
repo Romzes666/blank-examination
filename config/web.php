@@ -41,8 +41,8 @@ $config = [
                 'encryption' => 'SSL',
                 'host' => 'smtp.yandex.com',
                 'port' => '465',
-                'username' => 'Za1tSsss@yandex.ru',
-                'password' => 'ddmzdrhatnsfumwh',
+                'username' => 'togirr0@yandex.ru',
+                'password' => 'xtmdkwlcidoojjfu',
             ],
         ],
         'log' => [

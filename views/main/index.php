@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Главная';
 ?>
 <div class="container-main-menu">
@@ -57,15 +60,22 @@ $this->title = 'Главная';
                     <p>Контактные данные организации.</p>
                 </div>
             </div>
-            <div class="mainBox" id="main/logout" title="Выход">
-                <div class="mainIcon" style="--i:#0049FF">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <h2>Выход</h2>
-                </div>
-                <div class="mainContent">
-                    <h2>Выход</h2>
-                    <p>Нажмите чтобы выйти с системы.</p>
-                </div>
+            <div class="mainBox" id='exit' title="Выход">
+                <?php
+                echo
+                  Html::beginForm(['/site/logout'], 'post', ['class' => 'form-main-logout', 'id' => 'exit_form'])
+                  . Html::submitButton('
+                    <div class="mainIcon" style="--i:#0049FF;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <h2>Выход</h2>
+                     </div>
+                    <div class="mainContent">
+                        <h2>Выход</h2>
+                        <p>Нажмите чтобы выйти с системы.</p>
+                    </div>',
+                    ['class' => 'button-main-logout'])
+                  . Html::endForm();
+                ?>
             </div>
         </div>
     </div>
@@ -76,11 +86,16 @@ $(document).ready(function () {
         $("#menu").show();
         $(".mainBox").click(function () {
             let ids = $(this).attr("id");
-            $("#menu").fadeOut(1000,"linear", function () {
-                complete();
-            });
-            function complete(){
-                location.href="index.php?r="+ids;
+            if (ids === "exit") {
+                return;
+            }
+            else {
+                $("#menu").fadeOut(1000,"linear", function () {
+                    complete();
+                });
+                function complete(){
+                    location.href="index.php?r="+ids;
+                }
             }
         });
     });

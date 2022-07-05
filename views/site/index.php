@@ -38,7 +38,7 @@ $this->title = 'Вход';
                               <?= $form->field($model, 'email')->label('Почта') ?>
                             </div>
                             <div class="form-group" style="text-align: left">
-                              <?= $form->field($model, 'password', )->input('password')->label('Пароль') ?>
+                              <?= $form->field($model, 'password')->input('password')->label('Пароль') ?>
                             </div>
                           <?= $form->field($model, 'rememberMe')->checkbox([ 'label' => 'Запомнить меня',
                             'template' => "<div class=\"offset-lg-1 col-lg-3 custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",

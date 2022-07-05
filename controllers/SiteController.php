@@ -21,24 +21,24 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'index'],
+                'only' => ['login', 'logout', 'register'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'about'],
-                        'allow' => true,
+                        'allow' => false,
+                        'actions' => ['login', 'register'],
+                        'verbs' => ['POST'],
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['index'],
                         'allow' => true,
+                        'actions' => ['login', 'register'],
                         'roles' => ['?'],
                     ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
+                    [
+                        'allow' => true,
+                        'actions' => ['logout'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -60,22 +60,16 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
+
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['/main/index']);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->render('..\main\index', [
-                'model' => $model
-            ]);
+            return $this->redirect(['/main/index']);
         }
 
         $model->password = '';
@@ -97,7 +91,7 @@ class SiteController extends Controller
     public function actionRegister()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['/main/index']);
         }
         $model = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -109,7 +103,7 @@ class SiteController extends Controller
         }
         $model->userPassword = '';
         return $this->render('register', [
-          'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -126,7 +120,7 @@ class SiteController extends Controller
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->render('..\main\index');
+        return $this->render('/main/index');
     }
 
     /**
@@ -137,21 +131,12 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->render('/main/index');
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            try{
-                if($model->login()){
-                    return $this->render('main', [
-                      'model' => $model
-                    ]);
-                }
-            } catch (\DomainException $e){
-                Yii::$app->session->setFlash('error', $e->getMessage());
-                return $this->goHome();
-            }
+            return $this->render('/main/index');
         }
 
         $model->password = '';
@@ -169,7 +154,7 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['/site/index']);
     }
 
     /**

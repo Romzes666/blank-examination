@@ -79,7 +79,6 @@ $(document).ready(function () {
 
     $('#tasks_success').click(function () {
         count = $('#subject-count_task').val();
-        console.log(count);
         $('#tasks_container').html('');
         for (let i = 0; i < count; i++) {
             $('#tasks_container').append(`

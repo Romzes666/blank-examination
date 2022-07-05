@@ -45,7 +45,7 @@ class RegisterHelper
             ['html' => 'user-register-confirm-html'],
             ['user' => $user])
           ->setTo($email)
-          ->setFrom('Za1tSsss@yandex.ru')
+          ->setFrom('togirr0@yandex.ru')
           ->setSubject('Подтверждение регистрации')
           ->send();
 

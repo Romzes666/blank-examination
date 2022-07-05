@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
         <option class="option-sub" value="Информатика">Информатика</option>
         <option class="option-sub" value="Биология">Биология</option>
         <option class="option-sub" value="История">История</option>
-        <option class="option-sub" value="Георграфия">Георграфия</option>
+        <option class="option-sub" value="География">Георграфия</option>
         <option class="option-sub" value="Английский язык">Английский язык</option>
         <option class="option-sub" value="Обществознание">Обществознание</option>
         <option class="option-sub" value="Литература">Литература</option>

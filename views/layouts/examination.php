@@ -26,7 +26,8 @@ AppAsset::register($this);
 <header class="header">
     <div class="header-content">
         <div class="header__inner">
-            <a class="header__logo" href="<?= !Yii::$app->user->isGuest ? Url::to(['main/index']) : Url::to(['site/index']) ?>">ТОГИРРО</a>
+            <a class="header__logo" href="<?= !Yii::$app->user->isGuest ? Url::to(['main/index'])
+                : Url::to(['site/index']) ?>">ТОГИРРО</a>
             <nav class="nav">
                 <?php
                 if (!Yii::$app->user->isGuest) {
